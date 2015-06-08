@@ -18,10 +18,13 @@ class GameManager
 public:
     
     // Game Loop and Setup
+    
+    void render();
     void update();
-    void draw();
-    bool init(std::string title, int x, int y, int width, int height, bool fullscreen);
+    void handleEvents();
     void quit();
+    bool init(std::string title, int x, int y, int width, int height, bool fullscreen);
+    void cleanup();
     
     // Public Getters
     std::string getWindowTitle() { return m_windowTitle; }
@@ -48,6 +51,11 @@ private:
     int m_windowHeight;
     bool m_fullscreen;
     bool m_running;
+    
+    // Private Utility Methods
+    bool createRenderer();
+    bool createWindow(std::string title, int x, int y, int width, int height, bool fullscreen);
+    bool initSDL();
     
     // Default Constructor and Destructors
     GameManager();
