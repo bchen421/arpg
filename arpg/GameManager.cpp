@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 chenjamin. All rights reserved.
 //
 
+#include <SDL2_image/SDL_image.h>
+
 #include "GameManager.h"
 
 GameManager* GameManager::s_pInstance = 0;
@@ -13,9 +15,13 @@ GameManager* GameManager::s_pInstance = 0;
 #pragma mark - Game Loop and Setup
 void GameManager::render()
 {
+    SDL_RenderPresent(s_pRenderer);
+}
+
+void GameManager::clear()
+{
     SDL_SetRenderDrawColor(s_pRenderer, 0, 0, 0, 255);
     SDL_RenderClear(s_pRenderer);
-    SDL_RenderPresent(s_pRenderer);
 }
 
 void GameManager::update()
@@ -46,43 +52,11 @@ void GameManager::cleanup()
     s_pRenderer = NULL;
     SDL_DestroyWindow(s_pWindow);
     s_pWindow = NULL;
+    
+    IMG_Quit();
     SDL_Quit();
 }
 
-bool GameManager::init(std::string title, int x, int y, int width, int height, bool fullscreen)
-{
-    if (!initSDL())
-    {
-        printf("Failed to initialize SDL: %s\n", SDL_GetError());
-        return false;
-    }
-    
-    if (!createWindow(title, x, y, width, height, fullscreen))
-    {
-        printf("Failed to create window: %s\n", SDL_GetError());
-        return false;
-    }
-    
-    if (!createRenderer())
-    {
-        printf("Failed to create renderer: %s\n", SDL_GetError());
-        return false;
-    }
-    
-    return true;
-}
-
-GameManager* GameManager::Instance()
-{
-    if (s_pInstance == 0)
-    {
-        s_pInstance = new GameManager();
-        
-        return s_pInstance;
-    }
-    
-    return s_pInstance;
-}
 
 #pragma mark - Private Utility Methods
 bool GameManager::createRenderer()
@@ -95,7 +69,7 @@ bool GameManager::createRenderer()
     {
         return false;
     }
-
+    
     return true;
 }
 
@@ -128,6 +102,18 @@ bool GameManager::createWindow(std::string title, int x, int y, int width, int h
     return true;
 }
 
+bool GameManager::initSDLImage()
+{
+    int flags = (IMG_INIT_PNG);
+    
+    if (IMG_Init(flags) != flags)
+    {
+        return false;
+    }
+    
+    return true;
+}
+
 bool GameManager::initSDL()
 {
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) != 0)
@@ -141,6 +127,48 @@ bool GameManager::initSDL()
     }
 }
 
+#pragma mark - Initialization
+
+bool GameManager::init(std::string title, int x, int y, int width, int height, bool fullscreen)
+{
+    if (!initSDL())
+    {
+        printf("Failed to initialize SDL: %s\n", SDL_GetError());
+        return false;
+    }
+    
+    if (!initSDLImage())
+    {
+        printf("Failed to initialize SDL_Image: %s\n", SDL_GetError());
+        return false;
+    }
+    
+    if (!createWindow(title, x, y, width, height, fullscreen))
+    {
+        printf("Failed to create window: %s\n", IMG_GetError());
+        return false;
+    }
+    
+    if (!createRenderer())
+    {
+        printf("Failed to create renderer: %s\n", SDL_GetError());
+        return false;
+    }
+    
+    return true;
+}
+
+GameManager* GameManager::Instance()
+{
+    if (s_pInstance == 0)
+    {
+        s_pInstance = new GameManager();
+        
+        return s_pInstance;
+    }
+    
+    return s_pInstance;
+}
 
 #pragma mark - Constructors and Destructors
 GameManager::GameManager() : s_pWindow(NULL), s_pRenderer(NULL), m_windowWidth(0), m_windowHeight(0), m_fullscreen(false), m_running(false)

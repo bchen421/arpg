@@ -20,6 +20,7 @@ public:
     // Game Loop and Setup
     
     void render();
+    void clear();
     void update();
     void handleEvents();
     void quit();
@@ -27,6 +28,7 @@ public:
     void cleanup();
     
     // Public Getters
+    SDL_Renderer* getRenderer() { return s_pRenderer; }
     std::string getWindowTitle() { return m_windowTitle; }
     int getWindowWidth() { return m_windowWidth; }
     int getWindowHeight() { return m_windowHeight; }
@@ -56,6 +58,7 @@ private:
     bool createRenderer();
     bool createWindow(std::string title, int x, int y, int width, int height, bool fullscreen);
     bool initSDL();
+    bool initSDLImage();
     
     // Default Constructor and Destructors
     GameManager();
