@@ -12,13 +12,6 @@
 #include "GameManager.h"
 #include "SceneManager.h"
 
-const std::string WINDOW_TITLE = "arpg";
-const int WINDOW_XPOS = SDL_WINDOWPOS_UNDEFINED;
-const int WINDOW_YPOS = SDL_WINDOWPOS_UNDEFINED;
-const int WINDOW_WIDTH = 800;
-const int WINDOW_HEIGHT = 600;
-
-
 int main(int argc, const char * argv[])
 {
     // Initialize the Game
