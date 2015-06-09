@@ -9,5 +9,11 @@
 #ifndef arpg_Constants_h
 #define arpg_Constants_h
 
+enum SceneID
+{
+    kGenericScene,
+    kSandboxScene,
+};
+
 
 #endif

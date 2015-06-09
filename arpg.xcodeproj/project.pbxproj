@@ -69,10 +69,34 @@
 		8FBF08391B2683AA00F8DA50 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				8FBF083D1B26959C00F8DA50 /* Base Classes */,
+				8FBF083E1B2695C000F8DA50 /* Game Scenes */,
+				8FBF083F1B2695CB00F8DA50 /* Game Layers */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		8FBF083D1B26959C00F8DA50 /* Base Classes */ = {
+			isa = PBXGroup;
+			children = (
 				8FBF083B1B2683ED00F8DA50 /* Scene.h */,
 				8FBF083A1B2683ED00F8DA50 /* Scene.cpp */,
 			);
-			name = Scenes;
+			name = "Base Classes";
+			sourceTree = "<group>";
+		};
+		8FBF083E1B2695C000F8DA50 /* Game Scenes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Game Scenes";
+			sourceTree = "<group>";
+		};
+		8FBF083F1B2695CB00F8DA50 /* Game Layers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Game Layers";
 			sourceTree = "<group>";
 		};
 		8FD5AA281B225E2F008599D4 = {
