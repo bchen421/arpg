@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8FBF08381B26836800F8DA50 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08361B26836800F8DA50 /* SceneManager.cpp */; };
+		8FBF083C1B2683ED00F8DA50 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF083A1B2683ED00F8DA50 /* Scene.cpp */; };
 		8FD5AA351B225E2F008599D4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AA341B225E2F008599D4 /* main.cpp */; };
 		8FD5AA3F1B225F1F008599D4 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD5AA3B1B225F1F008599D4 /* SDL2_image.framework */; };
 		8FD5AA401B225F1F008599D4 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD5AA3C1B225F1F008599D4 /* SDL2_mixer.framework */; };
@@ -30,6 +32,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8FBF08351B2681D200F8DA50 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		8FBF08361B26836800F8DA50 /* SceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SceneManager.cpp; path = arpg/SceneManager.cpp; sourceTree = "<group>"; };
+		8FBF08371B26836800F8DA50 /* SceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SceneManager.h; path = arpg/SceneManager.h; sourceTree = "<group>"; };
+		8FBF083A1B2683ED00F8DA50 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Scene.cpp; path = arpg/Scene.cpp; sourceTree = "<group>"; };
+		8FBF083B1B2683ED00F8DA50 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scene.h; path = arpg/Scene.h; sourceTree = "<group>"; };
 		8FD5AA311B225E2F008599D4 /* arpg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = arpg; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD5AA341B225E2F008599D4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8FD5AA3B1B225F1F008599D4 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = /Library/Frameworks/SDL2_image.framework; sourceTree = "<absolute>"; };
@@ -59,11 +66,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8FBF08391B2683AA00F8DA50 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				8FBF083B1B2683ED00F8DA50 /* Scene.h */,
+				8FBF083A1B2683ED00F8DA50 /* Scene.cpp */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
 		8FD5AA281B225E2F008599D4 = {
 			isa = PBXGroup;
 			children = (
 				8FD5AA331B225E2F008599D4 /* arpg */,
 				8FD5AA441B225F9C008599D4 /* Singletons */,
+				8FBF08391B2683AA00F8DA50 /* Scenes */,
 				8FD5AA481B25491F008599D4 /* Game Objects */,
 				8FD5AA431B225F5C008599D4 /* Frameworks */,
 				8FD5AA321B225E2F008599D4 /* Products */,
@@ -81,6 +98,7 @@
 		8FD5AA331B225E2F008599D4 /* arpg */ = {
 			isa = PBXGroup;
 			children = (
+				8FBF08351B2681D200F8DA50 /* Constants.h */,
 				8FD5AA341B225E2F008599D4 /* main.cpp */,
 			);
 			path = arpg;
@@ -104,6 +122,8 @@
 				8FD5AA451B225FD6008599D4 /* GameManager.cpp */,
 				8FD5AA4D1B261DAC008599D4 /* TextureManager.h */,
 				8FD5AA4C1B261DAC008599D4 /* TextureManager.cpp */,
+				8FBF08371B26836800F8DA50 /* SceneManager.h */,
+				8FBF08361B26836800F8DA50 /* SceneManager.cpp */,
 			);
 			name = Singletons;
 			sourceTree = "<group>";
@@ -173,10 +193,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FBF083C1B2683ED00F8DA50 /* Scene.cpp in Sources */,
 				8FD5AA351B225E2F008599D4 /* main.cpp in Sources */,
 				8FD5AA471B225FD6008599D4 /* GameManager.cpp in Sources */,
 				8FD5AA4B1B254932008599D4 /* Sprite.cpp in Sources */,
 				8FD5AA4E1B261DAC008599D4 /* TextureManager.cpp in Sources */,
+				8FBF08381B26836800F8DA50 /* SceneManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +323,7 @@
 				8FD5AA3A1B225E2F008599D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
