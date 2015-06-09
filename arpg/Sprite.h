@@ -17,19 +17,20 @@ class Sprite : public GameObject
 public:
     
     // Getters and Setters
+    std::string getTextureID() { return m_textureID; }
     
     // Update loop
-    void draw();
-    void update();
+    virtual void draw();
+    virtual void update();
     
     // Initialization
-    bool init();
+    virtual bool init();
     
     // Constructor and Destructor
     Sprite();
     ~Sprite();
     
-private:
+protected:
     
     // SDL Data Members
     std::string m_textureID;

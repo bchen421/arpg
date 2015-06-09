@@ -20,6 +20,7 @@ public:
     
     // Getters and Setters
     SDL_Rect* getBoundingBox() { return &m_boundingBox; }
+    GameObjectType getGameObjectType() { return m_gameObjectType; }
     
     
     // Update loop
@@ -40,6 +41,9 @@ protected:
     // Default Bounding Box
     // Will Eval to True for SDL_RectEmpty Call
     SDL_Rect m_boundingBox = {0,0,0,0};
+    
+    // Game Object Type Enum
+    GameObjectType m_gameObjectType = kGameObject;
 };
 
 #endif

@@ -27,7 +27,7 @@ enum SceneID
 enum GameObjectType
 {
     kGameObject,
-    kSprite,
+    kSpriteObject,
 };
 
 
