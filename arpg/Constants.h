@@ -24,5 +24,11 @@ enum SceneID
     kSandboxScene,
 };
 
+enum GameObjectType
+{
+    kGameObject,
+    kSprite,
+};
+
 
 #endif

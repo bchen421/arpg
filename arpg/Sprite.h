@@ -9,15 +9,14 @@
 #ifndef __arpg__Sprite__
 #define __arpg__Sprite__
 
-#include <SDL2/SDL.h>
+#include "GameObject.h"
 
-class Sprite
+class Sprite : public GameObject
 {
     
 public:
     
     // Getters and Setters
-    SDL_Rect* getBoundingBox();
     
     // Update loop
     void draw();
@@ -33,7 +32,6 @@ public:
 private:
     
     // SDL Data Members
-    SDL_Rect m_boundingBox;
     std::string m_textureID;
     
 };
