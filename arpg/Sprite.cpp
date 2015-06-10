@@ -47,7 +47,8 @@ Sprite::~Sprite()
     
 }
 
-Sprite::Sprite() : m_textureID("")
+Sprite::Sprite()
 {
-    
+    m_gameObjectType = kSpriteObject;
+    m_textureID = "";
 }

@@ -9,31 +9,30 @@
 #ifndef __arpg__Sprite__
 #define __arpg__Sprite__
 
-#include <SDL2/SDL.h>
+#include "GameObject.h"
 
-class Sprite
+class Sprite : public GameObject
 {
     
 public:
     
     // Getters and Setters
-    SDL_Rect* getBoundingBox();
+    std::string getTextureID() { return m_textureID; }
     
     // Update loop
-    void draw();
-    void update();
+    virtual void draw();
+    virtual void update();
     
     // Initialization
-    bool init();
+    virtual bool init();
     
     // Constructor and Destructor
     Sprite();
     ~Sprite();
     
-private:
+protected:
     
     // SDL Data Members
-    SDL_Rect m_boundingBox;
     std::string m_textureID;
     
 };

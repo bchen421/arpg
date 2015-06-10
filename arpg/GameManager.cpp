@@ -8,6 +8,7 @@
 
 #include <SDL2_image/SDL_image.h>
 
+#include "SceneManager.h"
 #include "GameManager.h"
 
 GameManager* GameManager::s_pInstance = 0;
@@ -15,6 +16,8 @@ GameManager* GameManager::s_pInstance = 0;
 #pragma mark - Game Loop and Setup
 void GameManager::render()
 {
+    SceneManager::Instance()->getCurrentScene()->draw();
+    
     SDL_RenderPresent(s_pRenderer);
 }
 
@@ -26,7 +29,7 @@ void GameManager::clear()
 
 void GameManager::update()
 {
-
+    SceneManager::Instance()->getCurrentScene()->update();
 }
 
 void GameManager::handleEvents()
@@ -39,6 +42,8 @@ void GameManager::handleEvents()
     {
         quit();
     }
+    
+    SceneManager::Instance()->getCurrentScene()->handleInput();
 }
 
 void GameManager::quit()

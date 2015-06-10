@@ -8,17 +8,12 @@
 
 #include <iostream>
 
+#include "Constants.h"
 #include "GameManager.h"
+#include "SceneManager.h"
 
-// Temp includes until scenes and levels are built
-#include "Sprite.h"
-
-const std::string WINDOW_TITLE = "arpg";
-const int WINDOW_XPOS = SDL_WINDOWPOS_UNDEFINED;
-const int WINDOW_YPOS = SDL_WINDOWPOS_UNDEFINED;
-const int WINDOW_WIDTH = 800;
-const int WINDOW_HEIGHT = 600;
-
+// Temp Scene Include
+#include "SandboxScene.h"
 
 int main(int argc, const char * argv[])
 {
@@ -29,23 +24,16 @@ int main(int argc, const char * argv[])
         return 1;
     }
     
-    // Temp init code until scenes are built
-    Sprite strider;
-    strider.init();
+    // Load up the first scene
+    SandboxScene scene;
+    SceneManager::Instance()->pushScene(&scene);
     
     while (GameManager::Instance()->getRunning())
     {
         GameManager::Instance()->handleEvents();
         GameManager::Instance()->update();
         
-        // Temp loop code until scenes are built
-        strider.update();
-        
         GameManager::Instance()->clear();
-        
-        // Temp loop code until scenes are built
-        strider.draw();
-        
         GameManager::Instance()->render();
     }
     
