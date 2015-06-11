@@ -25,8 +25,8 @@ int main(int argc, const char * argv[])
     }
     
     // Load up the first scene
-    SandboxScene scene;
-    SceneManager::Instance()->runScene(&scene);
+    SandboxScene* scene = new SandboxScene();
+    SceneManager::Instance()->runScene(scene);
     
     while (GameManager::Instance()->getRunning())
     {

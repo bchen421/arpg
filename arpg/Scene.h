@@ -10,6 +10,7 @@
 #define __arpg__Scene__
 
 #include <vector>
+#include <map>
 
 #include "Constants.h"
 #include "Layer.h"
@@ -34,14 +35,14 @@ public:
     
     // Initialization and Cleanup
     virtual void init()=0;
-    virtual void clean()=0;
+    virtual void clean();
+    virtual ~Scene(){}
     
     
 protected:
     
     // Member bool to help with scene transition
     bool m_shouldExit = false;
-    bool m_readyToExit = false;
     
     // Unique Identifier for Scenes
     SceneID m_sceneID = kGenericScene;

@@ -18,6 +18,7 @@ bool SceneManager::runScene(Scene* scene)
     {
         removeCurrentScene();
         m_scenes.pop();
+        delete m_currentScene;
     }
     scene->init();
     m_scenes.push(scene);

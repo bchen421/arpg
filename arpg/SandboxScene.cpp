@@ -9,6 +9,7 @@
 #include <iostream>
 
 #include "Sprite.h"
+#include "SandboxBackground.h"
 #include "SceneManager.h"
 #include "SandboxScene.h"
 
@@ -58,16 +59,16 @@ void SandboxScene::load()
     player->init();
     
     m_gameObjects.push_back(player);
+    
+    SandboxBackground* background = new SandboxBackground();
+    background->init();
+    
+    m_backgroundLayers.push_back(background);    
 }
 
 void SandboxScene::clean()
 {
-    for (int i = 0; i < m_gameObjects.size(); i++ )
-    {
-        m_gameObjects[i]->clean();
-        delete m_gameObjects[i];
-    }
-
+    Scene::clean();
 }
 
 void SandboxScene::init()
