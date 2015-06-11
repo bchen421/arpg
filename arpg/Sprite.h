@@ -9,15 +9,15 @@
 #ifndef __arpg__Sprite__
 #define __arpg__Sprite__
 
+#include <map>
+#include <vector>
+
 #include "GameObject.h"
 
 class Sprite : public GameObject
 {
     
 public:
-    
-    // Getters and Setters
-    std::string getTextureID() { return m_textureID; }
     
     // Update loop
     virtual void draw();
@@ -34,7 +34,16 @@ public:
 protected:
     
     // SDL Data Members
-    std::string m_textureID;
+    std::string m_currentTextureID;
+    
+    // Member Methods for handling animations
+    virtual void updateAnimationFrame();
+    virtual void registerAnimations();
+    
+    // Class Members for Animation Handling
+    std::map<std::string,std::vector<std::string>> m_animations;
+    std::string m_currentAnimation;
+    int m_currentAnimationFrame;
     
 };
 

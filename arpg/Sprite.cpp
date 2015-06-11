@@ -13,7 +13,8 @@
 #pragma mark - Game Loop Methods
 void Sprite::draw()
 {
-    TextureManager::Instance()->renderTexture(m_textureID, &m_boundingBox);
+
+    TextureManager::Instance()->renderTexture(m_currentTextureID, &m_boundingBox);
 }
 
 void Sprite::update()
@@ -23,27 +24,69 @@ void Sprite::update()
         m_boundingBox.x = 0;
     }
     m_boundingBox.x += 1;
-}
-
-void Sprite::clean()
-{
     
+    updateAnimationFrame();
 }
 
-#pragma mark - Initialization
+#pragma mark - Initialization and Cleanup
 bool Sprite::init()
 {
     // Should load and put the sprite in idle state
-    m_textureID = "strider_idle_00";
+    m_currentTextureID = "strider_idle_00";
     
-    TextureManager::Instance()->loadTexture("assets/images/strider.png", m_textureID);
+    TextureManager::Instance()->loadTexture("assets/images/strider.png", "strider_idle_00");
     
     m_boundingBox.x = 100;
     m_boundingBox.y = 100;
     m_boundingBox.w = 170;
     m_boundingBox.h = 144;
     
+    TextureManager::Instance()->loadTexture("assets/images/strider_walk_01.png", "strider_walk_01");
+    
+    registerAnimations();
+    
+    m_currentAnimation = "testAnimation";
+    
     return true;
+}
+
+void Sprite::registerAnimations()
+{
+    std::vector<std::string> testAnimationFrames;
+    std::string animationName = "testAnimation";
+    m_animations[animationName] = testAnimationFrames;
+    
+    std::string idle = "strider_idle_00";
+    std::string walk = "strider_walk_01";
+    
+    m_animations[animationName].push_back(idle);
+    m_animations[animationName].push_back(idle);
+    m_animations[animationName].push_back(idle);
+    m_animations[animationName].push_back(idle);
+    m_animations[animationName].push_back(idle);
+    m_animations[animationName].push_back(idle);
+    m_animations[animationName].push_back(walk);
+    m_animations[animationName].push_back(walk);
+}
+
+void Sprite::updateAnimationFrame()
+{
+    if (m_currentAnimationFrame < m_animations[m_currentAnimation].size())
+    {
+        m_currentTextureID = m_animations[m_currentAnimation][m_currentAnimationFrame];
+    }
+    else
+    {
+        m_currentAnimationFrame = 0;
+        m_currentTextureID = m_animations[m_currentAnimation][m_currentAnimationFrame];
+    }
+    
+    m_currentAnimationFrame++;
+}
+
+void Sprite::clean()
+{
+    
 }
 
 #pragma mark - Constructor and Destructors
@@ -55,5 +98,7 @@ Sprite::~Sprite()
 Sprite::Sprite()
 {
     m_gameObjectType = kSpriteObject;
-    m_textureID = "";
+    m_currentTextureID = "";
+    m_currentAnimation = "";
+    m_currentAnimationFrame = 0;
 }
