@@ -19,11 +19,18 @@ public:
     // Update loop methods
     virtual void draw();
     virtual void update();
-    virtual void handleInput();
+    virtual void handleInput(SDL_Event* event);
     
     // Initialization and Cleanup
     virtual void init();
     virtual void clean();
+    
+private:
+    
+    void reloadScene();
+    
+    // Temporary loading method until load via data is done
+    virtual void load();
     
 };
 

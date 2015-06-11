@@ -17,7 +17,6 @@ GameManager* GameManager::s_pInstance = 0;
 void GameManager::render()
 {
     SceneManager::Instance()->getCurrentScene()->draw();
-    
     SDL_RenderPresent(s_pRenderer);
 }
 
@@ -32,7 +31,7 @@ void GameManager::update()
     SceneManager::Instance()->getCurrentScene()->update();
 }
 
-void GameManager::handleEvents()
+void GameManager::handleInput()
 {
     SDL_Event event;
     
@@ -43,7 +42,10 @@ void GameManager::handleEvents()
         quit();
     }
     
-    SceneManager::Instance()->getCurrentScene()->handleInput();
+    if (!SceneManager::Instance()->getCurrentScene()->exiting())
+    {
+            SceneManager::Instance()->getCurrentScene()->handleInput(&event);
+    }
 }
 
 void GameManager::quit()

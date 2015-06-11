@@ -27,8 +27,9 @@ public:
     virtual void draw()=0;
     virtual void update()=0;
     
-    // Initialization
+    // Lifecycle
     virtual bool init()=0;
+    virtual void clean()=0;
     
     // Destructor Gets Called
     // Needs Polymorphism

@@ -20,13 +20,17 @@ class Scene
     
 public:
     
+    // Scene Transition
+    void shouldExit() { m_shouldExit = true; }
+    bool exiting() { return m_shouldExit; }
+    
     // Getters
     SceneID getSceneID() { return m_sceneID; }
     
     // Update Loop Methods
     virtual void draw();
     virtual void update();
-    virtual void handleInput()=0;
+    virtual void handleInput(SDL_Event* event)=0;
     
     // Initialization and Cleanup
     virtual void init()=0;
@@ -34,6 +38,10 @@ public:
     
     
 protected:
+    
+    // Member bool to help with scene transition
+    bool m_shouldExit = false;
+    bool m_readyToExit = false;
     
     // Unique Identifier for Scenes
     SceneID m_sceneID = kGenericScene;
@@ -46,7 +54,7 @@ protected:
     // Vector of Sprites
     // Rendered after background layers
     // To do: Sort by Z-Value
-    std::vector<GameObject*> m_objects;
+    std::vector<GameObject*> m_gameObjects;
     
     // Vector of UI Components
     // Rendered after sprites

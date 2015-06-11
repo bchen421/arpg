@@ -25,6 +25,11 @@ void Sprite::update()
     m_boundingBox.x += 1;
 }
 
+void Sprite::clean()
+{
+    
+}
+
 #pragma mark - Initialization
 bool Sprite::init()
 {

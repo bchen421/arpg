@@ -10,21 +10,26 @@
 
 SceneManager* SceneManager::s_pInstance = 0;
 
-void SceneManager::pushScene(Scene* scene)
+#pragma mark - Scene Management Methods
+
+bool SceneManager::runScene(Scene* scene)
 {
+    if (m_currentScene)
+    {
+        removeCurrentScene();
+        m_scenes.pop();
+    }
     scene->init();
     m_scenes.push(scene);
     m_currentScene = m_scenes.top();
+    
+    return true;
 }
 
-void SceneManager::popScene()
+void SceneManager::removeCurrentScene()
 {
-    if (!m_scenes.empty())
-    {
-        m_scenes.pop();
-    }
-    
-    m_currentScene = m_scenes.top();
+    m_currentScene->shouldExit();
+    m_currentScene->clean();
 }
 
 Scene* SceneManager::getCurrentScene()

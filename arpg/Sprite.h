@@ -22,6 +22,7 @@ public:
     // Update loop
     virtual void draw();
     virtual void update();
+    virtual void clean();
     
     // Initialization
     virtual bool init();

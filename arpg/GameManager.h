@@ -22,7 +22,7 @@ public:
     void render();
     void clear();
     void update();
-    void handleEvents();
+    void handleInput();
     void quit();
     bool init(std::string title, int x, int y, int width, int height, bool fullscreen);
     void cleanup();

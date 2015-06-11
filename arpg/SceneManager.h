@@ -18,17 +18,19 @@ class SceneManager
     
 public:
     
+    // Scene Management
+    bool runScene(Scene* scene);
+    
     // Getters
     Scene* getCurrentScene();
-    
-    // Scene Management
-    void pushScene(Scene* scene);
-    void popScene();
     
     // Singleton Instance
     static SceneManager* Instance();
     
 private:
+    
+    // Private Scene Management Methods
+    void removeCurrentScene();
     
     // Pointer to current scene
     Scene* m_currentScene;

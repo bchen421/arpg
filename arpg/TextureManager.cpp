@@ -29,6 +29,11 @@ void TextureManager::renderTexture(std::string textureID, SDL_Rect* destRect)
 
 bool TextureManager::loadTexture(std::string filename, std::string textureID)
 {
+    if (m_textures.count(textureID))
+    {
+        return true;
+    }
+    
     SDL_Surface* tempSurface = IMG_Load(filename.c_str());
     
     if (!tempSurface)

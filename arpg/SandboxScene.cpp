@@ -9,7 +9,9 @@
 #include <iostream>
 
 #include "Sprite.h"
+#include "SceneManager.h"
 #include "SandboxScene.h"
+
 
 #pragma mark - Update Loop Methods
 void SandboxScene::draw()
@@ -19,30 +21,57 @@ void SandboxScene::draw()
 
 void SandboxScene::update()
 {
-    for (int i = 0; i < m_objects.size(); i++)
+    Scene::update();
+}
+
+void SandboxScene::handleInput(SDL_Event* event)
+{
+    if (event->type == SDL_KEYDOWN)
     {
-        m_objects[i]->update();
+        printf("A button was pressed!\n");
+        switch (event->key.keysym.sym)
+        {
+            case SDLK_ESCAPE:
+                reloadScene();
+                break;
+                
+            default:
+                break;
+        }
     }
 }
 
-void SandboxScene::handleInput()
+#pragma mark - Scene Specific Methods
+void SandboxScene::reloadScene()
 {
+    SandboxScene* scene = new SandboxScene();
+    
+    SceneManager::Instance()->runScene(scene);
 }
 
 #pragma mark - Initialization and Cleanup
+void SandboxScene::load()
+{
+    // Temporary method to use until loading via data is done
+    // Temp loading of sprites and stuff
+    Sprite* player = new Sprite();
+    player->init();
+    
+    m_gameObjects.push_back(player);
+}
+
 void SandboxScene::clean()
 {
-    // Stub method
-    // Should loop through vectors and invoke clean and destroy
+    for (int i = 0; i < m_gameObjects.size(); i++ )
+    {
+        m_gameObjects[i]->clean();
+        delete m_gameObjects[i];
+    }
+
 }
 
 void SandboxScene::init()
 {
     m_sceneID = kSandboxScene;
-    
-    // Temp loading of sprites and stuff
-    Sprite* player = new Sprite();
-    player->init();
-    
-    m_objects.push_back(player);
+    load();
 }
