@@ -86,7 +86,7 @@ void Sprite::updateAnimationFrame()
 
 void Sprite::clean()
 {
-    // Todo: Clean up m_animations map;
+    
 }
 
 #pragma mark - Constructor and Destructors
