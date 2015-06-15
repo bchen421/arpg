@@ -19,7 +19,9 @@ class GameObject
 public:
     
     // Getters and Setters
-    SDL_Rect* getBoundingBox() { return &m_boundingBox; }
+    virtual SDL_Rect getBoundingBox()=0;
+    virtual SDL_Point getPosition()=0;
+    virtual void setPosition(SDL_Point pos)=0;
     GameObjectType getGameObjectType() { return m_gameObjectType; }
     
     
@@ -37,11 +39,10 @@ public:
     
 
 protected:
-    
+
     // SDL Data Members
-    // Default Bounding Box
     // Will Eval to True for SDL_RectEmpty Call
-    SDL_Rect m_boundingBox = {0,0,0,0};
+    SDL_Rect m_boundingBox;
     
     // Game Object Type Enum
     GameObjectType m_gameObjectType = kGameObject;

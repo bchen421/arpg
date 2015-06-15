@@ -12,6 +12,7 @@
 #include "SandboxBackground.h"
 #include "SceneManager.h"
 #include "SandboxScene.h"
+#include "TextureManager.h"
 
 
 #pragma mark - Update Loop Methods
@@ -63,7 +64,7 @@ void SandboxScene::load()
     SandboxBackground* background = new SandboxBackground();
     background->init();
     
-    m_backgroundLayers.push_back(background);    
+    m_backgroundLayers.push_back(background);
 }
 
 void SandboxScene::clean()
@@ -74,5 +75,6 @@ void SandboxScene::clean()
 void SandboxScene::init()
 {
     m_sceneID = kSandboxScene;
+    TextureManager::Instance()->loadTexturePackerSpriteSheet("strider", "assets/spritesheets/strider.png", "assets/spritesheets/strider.json");
     load();
 }

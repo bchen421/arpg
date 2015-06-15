@@ -24,6 +24,11 @@ public:
     virtual void update();
     virtual void clean();
     
+    // Getters and Setters
+    virtual SDL_Point getPosition();
+    virtual void setPosition(SDL_Point pos);
+    virtual SDL_Rect getBoundingBox();
+    
     // Initialization
     virtual bool init();
     
@@ -33,8 +38,12 @@ public:
     
 protected:
     
+    // Getters and Setters
+    virtual void setCurrentSpriteID(std::string spriteID);
+    
     // SDL Data Members
-    std::string m_currentTextureID;
+    std::string m_currentSpriteID;
+    std::string m_spritesheet;
     
     // Member Methods for handling animations
     virtual void updateAnimationFrame();

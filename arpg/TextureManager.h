@@ -13,6 +13,10 @@
 #include <string>
 #include <map>
 
+#include "TexturePacker.h"
+
+typedef std::map<std::string,TexturePacker::spriteData> spriteDataMap;
+
 class TextureManager
 {
     
@@ -20,6 +24,12 @@ public:
     
     void renderTexture(std::string textureID, SDL_Rect* destRect);
     bool loadTexture(std::string filename, std::string textureID);
+    bool loadTexturePackerSpriteSheet(std::string spritesheetID, std::string imageFile, std::string dataFile);
+    void renderFromSpriteSheet(std::string spriteSheetID, std::string spriteID, SDL_Rect* destRect);
+    
+    // Public Data Getters
+    int getSpriteWidth(std::string spritesheet, std::string spriteID);
+    int getSpriteHeight(std::string spritesheet, std::string spriteID);
 
     // Singleton Instance
     static TextureManager* Instance();
@@ -29,8 +39,15 @@ private:
     // Singleton Static Member
     static TextureManager* s_pInstance;
     
-    // Map to hold pointer to textures
+    // Map to hold pointers to textures
     std::map<std::string, SDL_Texture*> m_textures;
+    
+    // Map to hold Sprite Sheet Data
+    std::map<std::string, SDL_Texture*> m_spritesheets;
+    std::map<std::string,spriteDataMap> m_spriteDataMaps;
+    
+    // Spritesheet Image Loader Helper Method
+    bool loadSpriteSheet(std::string spritesheetID, std::string imageFile);
     
     // Singleton Private Constructor and Destructor
     TextureManager();

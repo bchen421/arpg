@@ -1,0 +1,39 @@
+{"frames": {
+
+"strider_idle_01.png":
+{
+	"frame": {"x":2,"y":153,"w":170,"h":144},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":170,"h":144},
+	"sourceSize": {"w":170,"h":144},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"strider_walk_01.png":
+{
+	"frame": {"x":2,"y":153,"w":170,"h":144},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":170,"h":144},
+	"sourceSize": {"w":170,"h":144},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"strider_walk_02.png":
+{
+	"frame": {"x":2,"y":2,"w":170,"h":149},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":170,"h":149},
+	"sourceSize": {"w":170,"h":149},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "strider.png",
+	"format": "RGBA8888",
+	"size": {"w":174,"h":299},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:792d762902767ef04f1d63fbc4104118:754bb2afbac8e7fd065d124763be43f5:349587be09db1d83b8c05ffd2a6370ca$"
+}
+}

@@ -14,7 +14,22 @@
 
 TextureManager* TextureManager::s_pInstance = 0;
 
-#pragma mark - Utility Methods
+#pragma mark - Public Metadata Getters
+int TextureManager::getSpriteWidth(std::string spritesheet, std::string spriteID)
+{
+    return m_spriteDataMaps[spritesheet][spriteID].spriteWidth;
+}
+
+int TextureManager::getSpriteHeight(std::string spritesheet, std::string spriteID){
+    return m_spriteDataMaps[spritesheet][spriteID].spriteHeight;
+}
+
+#pragma mark - Public Rendering Methods
+void TextureManager::renderFromSpriteSheet(std::string spriteSheetID, std::string spriteID, SDL_Rect* destRect)
+{
+    SDL_RenderCopy(GameManager::Instance()->getRenderer(), m_spritesheets[spriteSheetID], &m_spriteDataMaps[spriteSheetID][spriteID].frame, destRect);
+}
+
 void TextureManager::renderTexture(std::string textureID, SDL_Rect* destRect)
 {
     if (m_textures.count(textureID) > 0)
@@ -25,6 +40,53 @@ void TextureManager::renderTexture(std::string textureID, SDL_Rect* destRect)
     {
         printf("Texture ID: %s does not exist!", textureID.c_str());
     }
+}
+
+#pragma mark - Utility Methods
+bool TextureManager::loadTexturePackerSpriteSheet(std::string spritesheetID, std::string imageFile, std::string dataFile)
+{
+    if (!loadSpriteSheet(spritesheetID, imageFile))
+    {
+        printf("Unable to load image with filename: %s", imageFile.c_str());
+        return false;
+    }
+    
+    TexturePacker::parseSpritesheetData(dataFile, m_spriteDataMaps[spritesheetID]);
+    
+    return true;
+}
+
+bool TextureManager::loadSpriteSheet(std::string spritesheetID, std::string imageFile)
+{
+    if (m_spritesheets.count(spritesheetID))
+    {
+        return true;
+    }
+    
+    SDL_Surface* tempSurface = IMG_Load(imageFile.c_str());
+    
+    if (!tempSurface)
+    {
+        printf("Unable to load image %s due to %s\n", imageFile.c_str(), SDL_GetError());
+        SDL_ClearError();
+        return false;
+    }
+    
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(GameManager::Instance()->getRenderer(), tempSurface);
+    
+    SDL_FreeSurface(tempSurface);
+    tempSurface = NULL;
+    
+    if (!texture)
+    {
+        printf("Unable to create texture from %s due to %s\n", imageFile.c_str(), SDL_GetError());
+        SDL_ClearError();
+        return false;
+    }
+    
+    m_spritesheets[spritesheetID] = texture;
+    
+    return true;
 }
 
 bool TextureManager::loadTexture(std::string filename, std::string textureID)

@@ -13,39 +13,53 @@
 #pragma mark - Game Loop Methods
 void Sprite::draw()
 {
-
-    TextureManager::Instance()->renderTexture(m_currentTextureID, &m_boundingBox);
+    TextureManager::Instance()->renderFromSpriteSheet(m_spritesheet, m_currentSpriteID, &m_boundingBox);
 }
 
 void Sprite::update()
 {
-    if (m_boundingBox.x > GameManager::Instance()->getWindowWidth())
+    if (getPosition().x > GameManager::Instance()->getWindowWidth())
     {
         m_boundingBox.x = 0;
     }
     m_boundingBox.x += 1;
+}
+
+#pragma mark - Getters and Setters
+SDL_Rect Sprite::getBoundingBox()
+{
+    return m_boundingBox;
+}
+
+SDL_Point Sprite::getPosition()
+{
+    return {m_boundingBox.x, m_boundingBox.y};
+}
+
+void Sprite::setPosition(SDL_Point pos)
+{
+    m_boundingBox.x = pos.x;
+    m_boundingBox.y = pos.y;
+}
+
+void Sprite::setCurrentSpriteID(std::string spriteID)
+{
+    m_currentSpriteID = spriteID;
     
-    updateAnimationFrame();
+    m_boundingBox.w = TextureManager::Instance()->getSpriteWidth(m_spritesheet, m_currentSpriteID);
+    m_boundingBox.h = TextureManager::Instance()->getSpriteHeight(m_spritesheet, m_currentSpriteID);
 }
 
 #pragma mark - Initialization and Cleanup
 bool Sprite::init()
 {
     // Should load and put the sprite in idle state
-    m_currentTextureID = "strider_idle_00";
+    m_spritesheet = "strider";
     
-    TextureManager::Instance()->loadTexture("assets/images/strider.png", "strider_idle_00");
+    setCurrentSpriteID("strider_idle_01.png");
     
     m_boundingBox.x = 100;
     m_boundingBox.y = 100;
-    m_boundingBox.w = 170;
-    m_boundingBox.h = 144;
-    
-    TextureManager::Instance()->loadTexture("assets/images/strider_walk_01.png", "strider_walk_01");
-    
-    registerAnimations();
-    
-    m_currentAnimation = "testAnimation";
     
     return true;
 }
@@ -71,17 +85,7 @@ void Sprite::registerAnimations()
 
 void Sprite::updateAnimationFrame()
 {
-    if (m_currentAnimationFrame < m_animations[m_currentAnimation].size())
-    {
-        m_currentTextureID = m_animations[m_currentAnimation][m_currentAnimationFrame];
-    }
-    else
-    {
-        m_currentAnimationFrame = 0;
-        m_currentTextureID = m_animations[m_currentAnimation][m_currentAnimationFrame];
-    }
     
-    m_currentAnimationFrame++;
 }
 
 void Sprite::clean()
@@ -98,7 +102,9 @@ Sprite::~Sprite()
 Sprite::Sprite()
 {
     m_gameObjectType = kSpriteObject;
-    m_currentTextureID = "";
+    m_spritesheet = "";
+    m_currentSpriteID = "";
     m_currentAnimation = "";
     m_currentAnimationFrame = 0;
+    m_boundingBox = {0,0,1,1};
 }
