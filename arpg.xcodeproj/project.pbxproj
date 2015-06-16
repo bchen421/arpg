@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8FBF08381B26836800F8DA50 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08361B26836800F8DA50 /* SceneManager.cpp */; };
 		8FBF083C1B2683ED00F8DA50 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF083A1B2683ED00F8DA50 /* Scene.cpp */; };
 		8FBF08471B2729FC00F8DA50 /* SandboxScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08451B2729FC00F8DA50 /* SandboxScene.cpp */; };
 		8FBF084A1B2930FE00F8DA50 /* SandboxBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08481B2930FE00F8DA50 /* SandboxBackground.cpp */; };
 		8FBF085C1B2B19C100F8DA50 /* TexturePacker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF085A1B2B19C100F8DA50 /* TexturePacker.cpp */; };
+		8FBF085F1B2FC48F00F8DA50 /* Vector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF085D1B2FC48F00F8DA50 /* Vector2D.cpp */; };
 		8FD5AA351B225E2F008599D4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AA341B225E2F008599D4 /* main.cpp */; };
 		8FD5AA3F1B225F1F008599D4 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD5AA3B1B225F1F008599D4 /* SDL2_image.framework */; };
 		8FD5AA401B225F1F008599D4 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD5AA3C1B225F1F008599D4 /* SDL2_mixer.framework */; };
@@ -36,8 +36,6 @@
 
 /* Begin PBXFileReference section */
 		8FBF08351B2681D200F8DA50 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		8FBF08361B26836800F8DA50 /* SceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SceneManager.cpp; path = arpg/SceneManager.cpp; sourceTree = "<group>"; };
-		8FBF08371B26836800F8DA50 /* SceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SceneManager.h; path = arpg/SceneManager.h; sourceTree = "<group>"; };
 		8FBF083A1B2683ED00F8DA50 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Scene.cpp; path = arpg/Scene.cpp; sourceTree = "<group>"; };
 		8FBF083B1B2683ED00F8DA50 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scene.h; path = arpg/Scene.h; sourceTree = "<group>"; };
 		8FBF08411B271E2900F8DA50 /* Layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Layer.h; path = arpg/Layer.h; sourceTree = "<group>"; };
@@ -47,13 +45,13 @@
 		8FBF08481B2930FE00F8DA50 /* SandboxBackground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SandboxBackground.cpp; path = arpg/SandboxBackground.cpp; sourceTree = "<group>"; };
 		8FBF08491B2930FE00F8DA50 /* SandboxBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SandboxBackground.h; path = arpg/SandboxBackground.h; sourceTree = "<group>"; };
 		8FBF084E1B2A47C700F8DA50 /* background.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = background.bmp; path = arpg/assets/images/background.bmp; sourceTree = "<group>"; };
-		8FBF084F1B2A47C700F8DA50 /* strider_walk_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = strider_walk_01.png; path = arpg/assets/images/strider_walk_01.png; sourceTree = "<group>"; };
-		8FBF08501B2A47C700F8DA50 /* strider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = strider.png; path = arpg/assets/images/strider.png; sourceTree = "<group>"; };
 		8FBF08511B2A47DA00F8DA50 /* strider.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = strider.json; path = arpg/assets/spritesheets/strider.json; sourceTree = "<group>"; };
 		8FBF08521B2A47DA00F8DA50 /* strider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = strider.png; path = arpg/assets/spritesheets/strider.png; sourceTree = "<group>"; };
 		8FBF08551B2B186A00F8DA50 /* rapidjson */ = {isa = PBXFileReference; lastKnownFileType = folder; name = rapidjson; path = arpg/rapidjson; sourceTree = "<group>"; };
 		8FBF085A1B2B19C100F8DA50 /* TexturePacker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TexturePacker.cpp; path = arpg/TexturePacker.cpp; sourceTree = "<group>"; };
 		8FBF085B1B2B19C100F8DA50 /* TexturePacker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TexturePacker.h; path = arpg/TexturePacker.h; sourceTree = "<group>"; };
+		8FBF085D1B2FC48F00F8DA50 /* Vector2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector2D.cpp; path = arpg/Vector2D.cpp; sourceTree = "<group>"; };
+		8FBF085E1B2FC48F00F8DA50 /* Vector2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector2D.h; path = arpg/Vector2D.h; sourceTree = "<group>"; };
 		8FD5AA311B225E2F008599D4 /* arpg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = arpg; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD5AA341B225E2F008599D4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8FD5AA3B1B225F1F008599D4 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = /Library/Frameworks/SDL2_image.framework; sourceTree = "<absolute>"; };
@@ -142,8 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				8FBF084E1B2A47C700F8DA50 /* background.bmp */,
-				8FBF084F1B2A47C700F8DA50 /* strider_walk_01.png */,
-				8FBF08501B2A47C700F8DA50 /* strider.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -170,6 +166,8 @@
 			children = (
 				8FBF085B1B2B19C100F8DA50 /* TexturePacker.h */,
 				8FBF085A1B2B19C100F8DA50 /* TexturePacker.cpp */,
+				8FBF085E1B2FC48F00F8DA50 /* Vector2D.h */,
+				8FBF085D1B2FC48F00F8DA50 /* Vector2D.cpp */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -224,8 +222,6 @@
 				8FD5AA451B225FD6008599D4 /* GameManager.cpp */,
 				8FD5AA4D1B261DAC008599D4 /* TextureManager.h */,
 				8FD5AA4C1B261DAC008599D4 /* TextureManager.cpp */,
-				8FBF08371B26836800F8DA50 /* SceneManager.h */,
-				8FBF08361B26836800F8DA50 /* SceneManager.cpp */,
 			);
 			name = Singletons;
 			sourceTree = "<group>";
@@ -304,7 +300,7 @@
 				8FD5AA4E1B261DAC008599D4 /* TextureManager.cpp in Sources */,
 				8FBF084A1B2930FE00F8DA50 /* SandboxBackground.cpp in Sources */,
 				8FBF08471B2729FC00F8DA50 /* SandboxScene.cpp in Sources */,
-				8FBF08381B26836800F8DA50 /* SceneManager.cpp in Sources */,
+				8FBF085F1B2FC48F00F8DA50 /* Vector2D.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

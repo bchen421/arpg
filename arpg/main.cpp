@@ -10,7 +10,6 @@
 
 #include "Constants.h"
 #include "GameManager.h"
-#include "SceneManager.h"
 
 // Temp Scene Include
 #include "SandboxScene.h"
@@ -26,15 +25,22 @@ int main(int argc, const char * argv[])
     
     // Load up the first scene
     SandboxScene* scene = new SandboxScene();
-    SceneManager::Instance()->runScene(scene);
+    GameManager::Instance()->runScene(scene);
     
     while (GameManager::Instance()->getRunning())
     {
-        GameManager::Instance()->handleInput();
-        GameManager::Instance()->update();
-        
-        GameManager::Instance()->clear();
-        GameManager::Instance()->render();
+        if (GameManager::Instance()->sceneTransition())
+        {
+            GameManager::Instance()->changeScene();
+        }
+        else
+        {
+            GameManager::Instance()->handleInput();
+            GameManager::Instance()->update();
+            
+            GameManager::Instance()->clear();
+            GameManager::Instance()->render();
+        }
     }
     
     GameManager::Instance()->cleanup();

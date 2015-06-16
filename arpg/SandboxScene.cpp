@@ -10,35 +10,53 @@
 
 #include "Sprite.h"
 #include "SandboxBackground.h"
-#include "SceneManager.h"
-#include "SandboxScene.h"
 #include "TextureManager.h"
-
+#include "GameManager.h"
+#include "SandboxScene.h"
 
 #pragma mark - Update Loop Methods
 void SandboxScene::draw()
 {
-    Scene::draw();
+    if (!m_shouldExit)
+    {
+        Scene::draw();
+    }
 }
 
 void SandboxScene::update()
 {
-    Scene::update();
+    if (!m_shouldExit)
+    {
+        Scene::update();
+    }
 }
 
 void SandboxScene::handleInput(SDL_Event* event)
 {
-    if (event->type == SDL_KEYDOWN)
+    if (!m_shouldExit)
     {
-        printf("A button was pressed!\n");
-        switch (event->key.keysym.sym)
+        if (event->type == SDL_KEYDOWN)
         {
-            case SDLK_ESCAPE:
-                reloadScene();
-                break;
-                
-            default:
-                break;
+            switch (event->key.keysym.sym)
+            {
+                case SDLK_ESCAPE:
+                    reloadScene();
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+        
+        for (int i = 0; i < m_gameObjects.size(); i++)
+        {
+            if (!m_shouldExit)
+            {
+                if (m_gameObjects[i]->getGameObjectType() == kSpriteObject)
+                {
+                    dynamic_cast<Sprite*>(m_gameObjects[i])->handleInput(event);
+                }
+            }
         }
     }
 }
@@ -46,9 +64,10 @@ void SandboxScene::handleInput(SDL_Event* event)
 #pragma mark - Scene Specific Methods
 void SandboxScene::reloadScene()
 {
+    m_shouldExit = true;
     SandboxScene* scene = new SandboxScene();
     
-    SceneManager::Instance()->runScene(scene);
+    GameManager::Instance()->sceneTransition(scene);
 }
 
 #pragma mark - Initialization and Cleanup

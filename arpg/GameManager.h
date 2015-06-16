@@ -12,13 +12,20 @@
 #include <SDL2/SDL.h>
 #include <string>
 
+#include "Scene.h"
+
 class GameManager
 {
     
 public:
     
-    // Game Loop and Setup
+    // Scene Running
+    bool runScene(Scene* newScene);
+    void sceneTransition(Scene* newScene);
+    bool changeScene();
+    bool sceneTransition() { return m_sceneTransition; }
     
+    // Game Loop and Setup
     void render();
     void clear();
     void update();
@@ -42,6 +49,11 @@ private:
     
     // Private Pointer to Singleton
     static GameManager* s_pInstance;
+    
+    // Scene Management
+    bool m_sceneTransition;
+    Scene* m_currentScene;
+    Scene* m_nextScene;
     
     // Private SDL2 Members
     SDL_Window* s_pWindow;

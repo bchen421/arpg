@@ -8,15 +8,49 @@
 
 #include <SDL2_image/SDL_image.h>
 
-#include "SceneManager.h"
 #include "GameManager.h"
 
 GameManager* GameManager::s_pInstance = 0;
 
+#pragma mark - Scene Management
+bool GameManager::changeScene()
+{
+    // Clean up and Delete Previous Scene
+    m_currentScene->clean();
+    delete m_currentScene;
+    
+    // Init and setup new Scene
+    m_currentScene = m_nextScene;
+    m_nextScene = NULL;
+    m_currentScene->init();
+    m_sceneTransition = false;
+    
+    return true;
+}
+
+void GameManager::sceneTransition(Scene* newScene)
+{
+    m_nextScene = newScene;
+    m_sceneTransition = true;
+}
+
+bool GameManager::runScene(Scene* newScene)
+{
+    if (!m_currentScene)
+    {
+        newScene->init();
+        m_currentScene = newScene;
+        
+        return true;
+    }
+    
+    return false;
+}
+
 #pragma mark - Game Loop and Setup
 void GameManager::render()
 {
-    SceneManager::Instance()->getCurrentScene()->draw();
+    m_currentScene->draw();
     SDL_RenderPresent(s_pRenderer);
 }
 
@@ -28,24 +62,22 @@ void GameManager::clear()
 
 void GameManager::update()
 {
-    SceneManager::Instance()->getCurrentScene()->update();
+    m_currentScene->update();
 }
 
 void GameManager::handleInput()
 {
     SDL_Event event;
     
-    SDL_PollEvent(&event);
-    
-    if (event.type == SDL_QUIT)
+    if (SDL_PollEvent(&event))
     {
-        quit();
+        if (event.type == SDL_QUIT)
+        {
+            quit();
+        }
     }
     
-    if (!SceneManager::Instance()->getCurrentScene()->exiting())
-    {
-            SceneManager::Instance()->getCurrentScene()->handleInput(&event);
-    }
+    m_currentScene->handleInput(&event);
 }
 
 void GameManager::quit()
@@ -178,7 +210,7 @@ GameManager* GameManager::Instance()
 }
 
 #pragma mark - Constructors and Destructors
-GameManager::GameManager() : s_pWindow(NULL), s_pRenderer(NULL), m_windowWidth(0), m_windowHeight(0), m_fullscreen(false), m_running(false)
+GameManager::GameManager() : s_pWindow(NULL), s_pRenderer(NULL), m_windowWidth(0), m_windowHeight(0), m_fullscreen(false), m_running(false), m_currentScene(NULL), m_nextScene(NULL), m_sceneTransition(false)
 {
     // Stub Method
 }

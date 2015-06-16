@@ -21,7 +21,6 @@ public:
     // Getters and Setters
     virtual SDL_Rect getBoundingBox()=0;
     virtual SDL_Point getPosition()=0;
-    virtual void setPosition(SDL_Point pos)=0;
     GameObjectType getGameObjectType() { return m_gameObjectType; }
     
     
