@@ -23,11 +23,11 @@ void SandboxScene::draw()
     }
 }
 
-void SandboxScene::update()
+void SandboxScene::update(Uint32* deltaTime)
 {
     if (!m_shouldExit)
     {
-        Scene::update();
+        Scene::update(deltaTime);
     }
 }
 

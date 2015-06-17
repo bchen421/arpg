@@ -38,7 +38,7 @@ void Scene::draw()
     }
 }
 
-void Scene::update()
+void Scene::update(Uint32* deltaTime)
 {
     for (int i = 0; i < m_backgroundLayers.size(); i++)
     {

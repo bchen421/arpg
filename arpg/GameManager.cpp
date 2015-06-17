@@ -12,6 +12,71 @@
 
 GameManager* GameManager::s_pInstance = 0;
 
+#pragma mark - Game Loop and Setup
+void GameManager::loopExit()
+{
+    Uint32 frameTime = SDL_GetTicks() - m_frameStartTime;
+    if (frameTime < TIME_PER_FRAME)
+    {
+        SDL_Delay(TIME_PER_FRAME - frameTime);
+    }
+}
+
+void GameManager::render()
+{
+    m_currentScene->draw();
+    SDL_RenderPresent(s_pRenderer);
+}
+
+void GameManager::clear()
+{
+    SDL_SetRenderDrawColor(s_pRenderer, 0, 0, 0, 255);
+    SDL_RenderClear(s_pRenderer);
+}
+
+void GameManager::update()
+{
+    m_currentScene->update(&m_deltaTime);
+}
+
+void GameManager::handleInput()
+{
+    SDL_Event event;
+    
+    if (SDL_PollEvent(&event))
+    {
+        if (event.type == SDL_QUIT)
+        {
+            quit();
+        }
+    }
+    
+    m_currentScene->handleInput(&event);
+}
+
+void GameManager::loopEnter()
+{
+    m_deltaTime = SDL_GetTicks() - m_frameStartTime;
+    m_frameStartTime += m_deltaTime;
+    //printf("Frame Delta Time: %d\n", m_deltaTime);
+}
+
+void GameManager::quit()
+{
+    m_running = false;
+}
+
+void GameManager::cleanup()
+{
+    SDL_DestroyRenderer(s_pRenderer);
+    s_pRenderer = NULL;
+    SDL_DestroyWindow(s_pWindow);
+    s_pWindow = NULL;
+    
+    IMG_Quit();
+    SDL_Quit();
+}
+
 #pragma mark - Scene Management
 bool GameManager::changeScene()
 {
@@ -47,60 +112,10 @@ bool GameManager::runScene(Scene* newScene)
     return false;
 }
 
-#pragma mark - Game Loop and Setup
-void GameManager::render()
-{
-    m_currentScene->draw();
-    SDL_RenderPresent(s_pRenderer);
-}
-
-void GameManager::clear()
-{
-    SDL_SetRenderDrawColor(s_pRenderer, 0, 0, 0, 255);
-    SDL_RenderClear(s_pRenderer);
-}
-
-void GameManager::update()
-{
-    m_currentScene->update();
-}
-
-void GameManager::handleInput()
-{
-    SDL_Event event;
-    
-    if (SDL_PollEvent(&event))
-    {
-        if (event.type == SDL_QUIT)
-        {
-            quit();
-        }
-    }
-    
-    m_currentScene->handleInput(&event);
-}
-
-void GameManager::quit()
-{
-    m_running = false;
-}
-
-void GameManager::cleanup()
-{
-    SDL_DestroyRenderer(s_pRenderer);
-    s_pRenderer = NULL;
-    SDL_DestroyWindow(s_pWindow);
-    s_pWindow = NULL;
-    
-    IMG_Quit();
-    SDL_Quit();
-}
-
-
 #pragma mark - Private Utility Methods
 bool GameManager::createRenderer()
 {
-    Uint32 flags = (SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    Uint32 flags = (SDL_RENDERER_ACCELERATED); //| SDL_RENDERER_PRESENTVSYNC);
     
     s_pRenderer = SDL_CreateRenderer(s_pWindow, -1, flags);
     
@@ -210,7 +225,7 @@ GameManager* GameManager::Instance()
 }
 
 #pragma mark - Constructors and Destructors
-GameManager::GameManager() : s_pWindow(NULL), s_pRenderer(NULL), m_windowWidth(0), m_windowHeight(0), m_fullscreen(false), m_running(false), m_currentScene(NULL), m_nextScene(NULL), m_sceneTransition(false)
+GameManager::GameManager() : s_pWindow(NULL), s_pRenderer(NULL), m_windowWidth(0), m_windowHeight(0), m_fullscreen(false), m_running(false), m_currentScene(NULL), m_nextScene(NULL), m_sceneTransition(false), m_frameStartTime(0), m_deltaTime(0)
 {
     // Stub Method
 }

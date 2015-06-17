@@ -12,7 +12,12 @@
 #include <string>
 #include <SDL2/SDL.h>
 
-const std::string WINDOW_TITLE = "arpg";
+// Framerate Capping
+const int SCREEN_FPS = 60;
+const int TIME_PER_FRAME = 1000 / SCREEN_FPS;
+
+// SDL Window Constants
+const std::string WINDOW_TITLE = "Sandbox";
 const int WINDOW_XPOS = SDL_WINDOWPOS_UNDEFINED;
 const int WINDOW_YPOS = SDL_WINDOWPOS_UNDEFINED;
 const int WINDOW_WIDTH = 800;

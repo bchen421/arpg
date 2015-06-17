@@ -26,10 +26,12 @@ public:
     bool sceneTransition() { return m_sceneTransition; }
     
     // Game Loop and Setup
+    void loopExit();
     void render();
     void clear();
     void update();
     void handleInput();
+    void loopEnter();
     void quit();
     bool init(std::string title, int x, int y, int width, int height, bool fullscreen);
     void cleanup();
@@ -65,6 +67,8 @@ private:
     int m_windowHeight;
     bool m_fullscreen;
     bool m_running;
+    Uint32 m_frameStartTime;
+    Uint32 m_deltaTime;
     
     // Private Utility Methods
     bool createRenderer();

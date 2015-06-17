@@ -50,6 +50,7 @@ protected:
     PlayerState m_currentState;
     Vector2D m_position;
     Vector2D m_velocity;
+    float m_walkingSpeed;
     
     // Member Methods for handling animations
     virtual void updateAnimationFrame();

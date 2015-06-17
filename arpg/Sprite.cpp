@@ -27,26 +27,34 @@ void Sprite::update()
 
 void Sprite::handleInput(SDL_Event* event)
 {
+    m_velocity = {0,0};
+    bool walking = false;
+    
     const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
     
     if (currentKeyStates[SDL_SCANCODE_W])
     {
-        m_velocity = {0,-1};
-        changeState(kStateWalking);
+        walking = true;
+        m_velocity.setY(m_velocity.getY() - 1);
     }
-    else if (currentKeyStates[SDL_SCANCODE_A])
+    if (currentKeyStates[SDL_SCANCODE_A])
     {
-        m_velocity = {-1,0};
-        changeState(kStateWalking);
+        walking = true;
+        m_velocity.setX(m_velocity.getX() - 1);
     }
-    else if (currentKeyStates[SDL_SCANCODE_S])
+    if (currentKeyStates[SDL_SCANCODE_S])
     {
-        m_velocity = {0,1};
-        changeState(kStateWalking);
+        walking = true;
+        m_velocity.setY(m_velocity.getY() + 1);
     }
-    else if (currentKeyStates[SDL_SCANCODE_D])
+    if (currentKeyStates[SDL_SCANCODE_D])
     {
-        m_velocity = {1,0};
+        walking = true;
+        m_velocity.setX(m_velocity.getX() + 1);
+    }
+    
+    if (walking)
+    {
         changeState(kStateWalking);
     }
     else
@@ -58,6 +66,11 @@ void Sprite::handleInput(SDL_Event* event)
 #pragma mark - Player State Management Methods
 void Sprite::walkingState()
 {
+    // Change to be based on speed
+    m_velocity.normalize();
+    m_velocity *= m_walkingSpeed;
+    printf("X velocity: %g\n", m_velocity.getX());
+    printf("Y velocity: %g\n", m_velocity.getY());
     m_position += m_velocity;
     
     if (m_currentAnimation == "strider_walking_animation")
@@ -152,6 +165,9 @@ void Sprite::setCurrentSpriteID(std::string spriteID)
 #pragma mark - Initialization and Cleanup
 bool Sprite::init()
 {
+    // Object specific attributes
+    m_walkingSpeed = 1.0;
+    
     // Should load and put the sprite in idle state
     m_spritesheet = "strider";
     
@@ -258,4 +274,5 @@ Sprite::Sprite()
     m_boundingBox = {0,0,1,1};
     m_currentState = kStateIdle;
     m_velocity = Vector2D(0,0);
+    m_walkingSpeed = 0.0;
 }

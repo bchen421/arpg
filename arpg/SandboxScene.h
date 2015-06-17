@@ -18,7 +18,7 @@ public:
     
     // Update loop methods
     virtual void draw();
-    virtual void update();
+    virtual void update(Uint32* deltaTime);
     virtual void handleInput(SDL_Event* event);
     
     // Initialization and Cleanup
