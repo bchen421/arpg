@@ -9,6 +9,7 @@
 #include <iostream>
 
 #include "Sprite.h"
+#include "Strider.h"
 #include "SandboxBackground.h"
 #include "TextureManager.h"
 #include "GameManager.h"
@@ -52,9 +53,9 @@ void SandboxScene::handleInput(SDL_Event* event)
         {
             if (!m_shouldExit)
             {
-                if (m_gameObjects[i]->getGameObjectType() == kSpriteObject)
+                if (m_gameObjects[i]->getGameObjectType() == kPlayerObject)
                 {
-                    dynamic_cast<Sprite*>(m_gameObjects[i])->handleInput(event);
+                    dynamic_cast<Player*>(m_gameObjects[i])->handleInput(event);
                 }
             }
         }
@@ -75,7 +76,7 @@ void SandboxScene::load()
 {
     // Temporary method to use until loading via data is done
     // Temp loading of sprites and stuff
-    Sprite* player = new Sprite();
+    Strider* player = new Strider();
     player->init();
     
     m_gameObjects.push_back(player);

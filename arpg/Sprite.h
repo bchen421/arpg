@@ -9,10 +9,6 @@
 #ifndef __arpg__Sprite__
 #define __arpg__Sprite__
 
-#include <map>
-#include <vector>
-
-#include "Vector2D.h"
 #include "GameObject.h"
 
 class Sprite : public GameObject
@@ -20,51 +16,49 @@ class Sprite : public GameObject
     
 public:
     
-    // Update loop
-    virtual void draw();
-    virtual void update();
-    virtual void handleInput(SDL_Event* event);
-    virtual void clean();
+    /* Update loop */
+    virtual void draw()=0;
+    virtual void update()=0;
     
-    // Getters and Setters
-    virtual SDL_Point getPosition();
-    virtual SDL_Rect getBoundingBox();
-    virtual void changeState(PlayerState newState);
+    /* Lifecycle */
+    virtual void clean()=0;
+    virtual void init()=0;
     
-    // Initialization
-    virtual bool init();
+    /* State Changing Interface */
+    virtual void changeState(GameObjectState newState)=0;
     
-    // Constructor and Destructor
-    Sprite();
-    ~Sprite();
+    /* Public Getters */
+    virtual Vector2D getPosition() { return m_position; }
+    
+    /* Polymorphic Destructor */
+    virtual ~Sprite() {}
     
 protected:
     
-    // Getters and Setters
+    /* Updates Bounding Box with (x,y) from m_position */
+    virtual void updateBoundingBox();
+    
+    /* Abstraction to call other state handling methods */
+    virtual void handleState()=0;
+    
+    /*
+     * Wrapper to set the current spriteID and then
+     * update width and height of m_boundingBox
+     */
     virtual void setCurrentSpriteID(std::string spriteID);
-    virtual void handleState();
     
-    // SDL Data Members
-    std::string m_currentSpriteID;
+    /* Spritesheet key to render spriteID from */
     std::string m_spritesheet;
-    PlayerState m_currentState;
+    
+    /*
+     * Current spriteID use to query map of textures.
+     * This should be set using setCurrentSpriteID() to ensure
+     * that m_boundingBox has the current width and height
+     */
+    std::string m_currentSpriteID;
+    
+    /* Position of sprite.  Vector so it can do proper Vector math */
     Vector2D m_position;
-    Vector2D m_velocity;
-    float m_walkingSpeed;
-    
-    // Member Methods for handling animations
-    virtual void updateAnimationFrame();
-    virtual void registerAnimations();
-    
-    // Class Members for Animation Handling
-    std::map<std::string,std::vector<std::string>> m_animations;
-    std::string m_currentAnimation;
-    int m_currentAnimationFrame;
-    
-    // State Management Helpers
-    void idleState();
-    void walkingState();
-    void updateBoundingBox();
     
 };
 

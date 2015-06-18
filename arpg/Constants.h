@@ -33,9 +33,10 @@ enum GameObjectType
 {
     kGameObject,
     kSpriteObject,
+    kPlayerObject,
 };
 
-enum PlayerState
+enum GameObjectState
 {
     kStateIdle,
     kStateWalking,

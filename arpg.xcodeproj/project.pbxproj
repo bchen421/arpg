@@ -12,6 +12,7 @@
 		8FBF084A1B2930FE00F8DA50 /* SandboxBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08481B2930FE00F8DA50 /* SandboxBackground.cpp */; };
 		8FBF085C1B2B19C100F8DA50 /* TexturePacker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF085A1B2B19C100F8DA50 /* TexturePacker.cpp */; };
 		8FBF085F1B2FC48F00F8DA50 /* Vector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF085D1B2FC48F00F8DA50 /* Vector2D.cpp */; };
+		8FBF08671B31B3C500F8DA50 /* Strider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08651B31B3C500F8DA50 /* Strider.cpp */; };
 		8FD5AA351B225E2F008599D4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AA341B225E2F008599D4 /* main.cpp */; };
 		8FD5AA3F1B225F1F008599D4 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD5AA3B1B225F1F008599D4 /* SDL2_image.framework */; };
 		8FD5AA401B225F1F008599D4 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD5AA3C1B225F1F008599D4 /* SDL2_mixer.framework */; };
@@ -52,6 +53,9 @@
 		8FBF085B1B2B19C100F8DA50 /* TexturePacker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TexturePacker.h; path = arpg/TexturePacker.h; sourceTree = "<group>"; };
 		8FBF085D1B2FC48F00F8DA50 /* Vector2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector2D.cpp; path = arpg/Vector2D.cpp; sourceTree = "<group>"; };
 		8FBF085E1B2FC48F00F8DA50 /* Vector2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector2D.h; path = arpg/Vector2D.h; sourceTree = "<group>"; };
+		8FBF08621B310D7C00F8DA50 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = arpg/Player.h; sourceTree = "<group>"; };
+		8FBF08651B31B3C500F8DA50 /* Strider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Strider.cpp; path = arpg/Strider.cpp; sourceTree = "<group>"; };
+		8FBF08661B31B3C500F8DA50 /* Strider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Strider.h; path = arpg/Strider.h; sourceTree = "<group>"; };
 		8FD5AA311B225E2F008599D4 /* arpg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = arpg; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD5AA341B225E2F008599D4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8FD5AA3B1B225F1F008599D4 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = /Library/Frameworks/SDL2_image.framework; sourceTree = "<absolute>"; };
@@ -123,6 +127,9 @@
 			isa = PBXGroup;
 			children = (
 				8FBF08441B2722CA00F8DA50 /* GameObject.h */,
+				8FD5AA4A1B254932008599D4 /* Sprite.h */,
+				8FD5AA491B254932008599D4 /* Sprite.cpp */,
+				8FBF08621B310D7C00F8DA50 /* Player.h */,
 			);
 			name = "Base Classes";
 			sourceTree = "<group>";
@@ -170,6 +177,15 @@
 				8FBF085D1B2FC48F00F8DA50 /* Vector2D.cpp */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		8FBF08641B31B39C00F8DA50 /* Player Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8FBF08661B31B3C500F8DA50 /* Strider.h */,
+				8FBF08651B31B3C500F8DA50 /* Strider.cpp */,
+			);
+			name = "Player Classes";
 			sourceTree = "<group>";
 		};
 		8FD5AA281B225E2F008599D4 = {
@@ -230,8 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				8FBF08431B2722A600F8DA50 /* Base Classes */,
-				8FD5AA4A1B254932008599D4 /* Sprite.h */,
-				8FD5AA491B254932008599D4 /* Sprite.cpp */,
+				8FBF08641B31B39C00F8DA50 /* Player Classes */,
 			);
 			name = "Game Objects";
 			sourceTree = "<group>";
@@ -298,6 +313,7 @@
 				8FBF085C1B2B19C100F8DA50 /* TexturePacker.cpp in Sources */,
 				8FD5AA4B1B254932008599D4 /* Sprite.cpp in Sources */,
 				8FD5AA4E1B261DAC008599D4 /* TextureManager.cpp in Sources */,
+				8FBF08671B31B3C500F8DA50 /* Strider.cpp in Sources */,
 				8FBF084A1B2930FE00F8DA50 /* SandboxBackground.cpp in Sources */,
 				8FBF08471B2729FC00F8DA50 /* SandboxScene.cpp in Sources */,
 				8FBF085F1B2FC48F00F8DA50 /* Vector2D.cpp in Sources */,

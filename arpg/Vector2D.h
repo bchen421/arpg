@@ -34,7 +34,7 @@ public:
     Vector2D operator+(const Vector2D& v2) const;
     friend Vector2D& operator+=(Vector2D& v1, const Vector2D& v2);
     
-    // Multiplacation
+    // Multiplication
     Vector2D operator*(float scalar);
     Vector2D& operator*=(float scalar);
     
@@ -46,8 +46,7 @@ public:
     Vector2D operator/(float scalar);
     Vector2D& operator/=(float scalar);
     
-private:
-    
+    /* Public since the class can be declared private or protected */
     float m_x;
     float m_y;
     

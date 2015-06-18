@@ -12,39 +12,43 @@
 #include <SDL2/SDL.h>
 
 #include "Constants.h"
+#include "Vector2D.h"
 
 class GameObject
 {
     
 public:
     
-    // Getters and Setters
-    virtual SDL_Rect getBoundingBox()=0;
-    virtual SDL_Point getPosition()=0;
-    GameObjectType getGameObjectType() { return m_gameObjectType; }
-    
-    
-    // Update loop
+    /* Update loop */
     virtual void draw()=0;
     virtual void update()=0;
     
-    // Lifecycle
-    virtual bool init()=0;
+    /* Lifecycle */
     virtual void clean()=0;
+    virtual void init()=0;
     
-    // Destructor Gets Called
-    // Needs Polymorphism
+    /* State Changing Interface */
+    virtual void changeState(GameObjectState newState)=0;
+    
+    /* Public Getters */
+    virtual SDL_Rect getBoundingBox() { return m_boundingBox; }
+    GameObjectType getGameObjectType() { return m_gameObjectType; }
+    GameObjectState getGameObjectState() { return m_currentState; }
+    
+    /* Destructor */
     virtual ~GameObject(){}
     
-
 protected:
 
-    // SDL Data Members
-    // Will Eval to True for SDL_RectEmpty Call
+    /* Bounding Box of the Object on the screen */
     SDL_Rect m_boundingBox;
     
-    // Game Object Type Enum
+    /* Enumeration of the objects current state */
+    GameObjectState m_currentState = kStateIdle;
+    
+    /* Enumeration to identify objects of different types */
     GameObjectType m_gameObjectType = kGameObject;
+        
 };
 
 #endif
