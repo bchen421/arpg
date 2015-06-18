@@ -8,8 +8,8 @@
 
 #include <iostream>
 
-#include "Sprite.h"
 #include "Strider.h"
+#include "Etest.h"
 #include "SandboxBackground.h"
 #include "TextureManager.h"
 #include "GameManager.h"
@@ -78,8 +78,11 @@ void SandboxScene::load()
     // Temp loading of sprites and stuff
     Strider* player = new Strider();
     player->init();
-    
     m_gameObjects.push_back(player);
+    
+    Etest* enemy01 = new Etest();
+    enemy01->init();
+    m_gameObjects.push_back(enemy01);
     
     SandboxBackground* background = new SandboxBackground();
     background->init();

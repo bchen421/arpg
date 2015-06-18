@@ -1,76 +1,38 @@
 //
-//  Strider.cpp
+//  Etest.cpp
 //  arpg
 //
-//  Created by Benjamin Chen on 6/17/15.
+//  Created by Benjamin Chen on 6/18/15.
 //  Copyright (c) 2015 chenjamin. All rights reserved.
 //
 
 #include <sstream>
 
 #include "TextureManager.h"
-#include "Strider.h"
+#include "Etest.h"
 
 #pragma mark - Update Loop Methods
-void Strider::draw()
+void Etest::draw()
 {
     TextureManager::Instance()->renderFromSpriteSheet(m_spritesheet, m_currentSpriteID, &m_boundingBox);
 }
 
-void Strider::update()
+void Etest::update()
 {
     handleState();
     updateAnimationFrame();
     updateBoundingBox();
 }
 
-void Strider::handleInput(SDL_Event *event)
-{
-    m_velocity = {0,0};
-    bool walking = false;
-    
-    const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
-    
-    if (currentKeyStates[SDL_SCANCODE_W])
-    {
-        walking = true;
-        m_velocity.setY(m_velocity.getY() - 1);
-    }
-    if (currentKeyStates[SDL_SCANCODE_A])
-    {
-        walking = true;
-        m_velocity.setX(m_velocity.getX() - 1);
-    }
-    if (currentKeyStates[SDL_SCANCODE_S])
-    {
-        walking = true;
-        m_velocity.setY(m_velocity.getY() + 1);
-    }
-    if (currentKeyStates[SDL_SCANCODE_D])
-    {
-        walking = true;
-        m_velocity.setX(m_velocity.getX() + 1);
-    }
-    
-    if (walking)
-    {
-        changeState(kStateWalking);
-    }
-    else
-    {
-        changeState(kStateIdle);
-    }
-}
-
 #pragma mark - State Management Methods
-void Strider::changeState(GameObjectState newState)
+void Etest::changeState(GameObjectState newState)
 {
     switch (newState)
     {
         case kStateIdle:
             if (m_currentState != newState)
             {
-                printf("Changing to idle state!\n");
+                printf("Etest changing to idle state!\n");
                 m_currentState = newState;
             }
             break;
@@ -78,17 +40,33 @@ void Strider::changeState(GameObjectState newState)
         case kStateWalking:
             if (m_currentState != newState)
             {
-                printf("Changing to walking state!\n");
+                printf("Etest changing to walking state!\n");
                 m_currentState = newState;
             }
             break;
             
-        default:
+        case kStateAggroed:
+            if (m_currentState != newState)
+            {
+                printf("Etest changing to aggroed state!\n");
+                m_currentState = newState;
+            }
+            break;
+            
+        case kStatePursuing:
+            if (m_currentState != newState)
+            {
+                printf("Etest changing to pursuing state!\n");
+                m_currentState = newState;
+            }
+            break;
+            
+            default:
             break;
     }
 }
 
-void Strider::handleState()
+void Etest::handleState()
 {
     switch (m_currentState)
     {
@@ -96,38 +74,12 @@ void Strider::handleState()
             idleState();
             break;
             
-        case kStateWalking:
-            walkingState();
-            break;
-            
         default:
             break;
     }
 }
 
-void Strider::walkingState()
-{
-    /* Normalize velocity */
-    m_velocity.normalize();
-    
-    /* Calculate walking speed per frame */
-    m_velocity *= m_walkingSpeed;
-    
-    /* Apply to position */
-    m_position += m_velocity;
-    
-    if (m_currentAnimation == "strider_walking_animation")
-    {
-        m_currentAnimationFrame += 1;
-    }
-    else
-    {
-        m_currentAnimation = "strider_walking_animation";
-        m_currentAnimationFrame = 0;
-    }
-}
-
-void Strider::idleState()
+void Etest::idleState()
 {
     if (m_currentAnimation == "strider_idle_animation")
     {
@@ -140,8 +92,13 @@ void Strider::idleState()
     }
 }
 
-# pragma mark - Animation Helper Methods
-void Strider::updateAnimationFrame()
+void Etest::walkingState()
+{
+    // Stub method
+}
+
+#pragma mark - Animation Helper Methods
+void Etest::updateAnimationFrame()
 {
     if (m_currentAnimationFrame >= m_animations[m_currentAnimation].size())
     {
@@ -153,8 +110,7 @@ void Strider::updateAnimationFrame()
     }
 }
 
-/* Temporary method until data bound constructor can be build */
-void Strider::registerAnimations()
+void Etest::registerAnimations()
 {
     /* Vector of animation frame names */
     std::vector<std::string> idleAnimationFrames;
@@ -207,19 +163,19 @@ void Strider::registerAnimations()
     m_animations["strider_walking_animation"] = walkingAnimationFrames;
 }
 
-#pragma mark - Lifecycle Methods
-void Strider::clean()
+#pragma mark - Lifecycle Management
+void Etest::clean()
 {
-    /* Stub Method */
+    /* Stub method */
 }
 
-void Strider::init()
+void Etest::init()
 {
     m_boundingBox = {0,0,1,1};
-    m_gameObjectType = kPlayerObject;
+    m_gameObjectType = kEnemyObject;
     m_spritesheet = "strider";
     m_currentSpriteID = "";
-    m_position = {100,100};
+    m_position = {400,100};
     m_walkingSpeed = 1.0;
     
     registerAnimations();

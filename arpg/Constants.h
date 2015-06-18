@@ -34,12 +34,20 @@ enum GameObjectType
     kGameObject,
     kSpriteObject,
     kPlayerObject,
+    kEnemyObject,
 };
 
 enum GameObjectState
 {
+    /* Shared States */
     kStateIdle,
+    
+    /* Player States */
     kStateWalking,
+    
+    /* Enemy States */
+    kStateAggroed,
+    kStatePursuing,
 };
 
 
