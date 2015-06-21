@@ -25,9 +25,9 @@ int TextureManager::getSpriteHeight(std::string spritesheet, std::string spriteI
 }
 
 #pragma mark - Public Rendering Methods
-void TextureManager::renderFromSpriteSheet(std::string spriteSheetID, std::string spriteID, SDL_Rect* destRect)
+void TextureManager::renderFromSpriteSheet(std::string spriteSheetID, std::string spriteID, SDL_Rect* destRect, SDL_RendererFlip flip, const double angle, SDL_Point* center)
 {
-    SDL_RenderCopy(GameManager::Instance()->getRenderer(), m_spritesheets[spriteSheetID], &m_spriteDataMaps[spriteSheetID][spriteID].frame, destRect);
+    SDL_RenderCopyEx(GameManager::Instance()->getRenderer(), m_spritesheets[spriteSheetID], &m_spriteDataMaps[spriteSheetID][spriteID].frame, destRect, angle, center, flip);
 }
 
 void TextureManager::renderTexture(std::string textureID, SDL_Rect* destRect)

@@ -60,6 +60,13 @@ protected:
     /* Position of sprite.  Vector so it can do proper Vector math */
     Vector2D m_position;
     
+    /* 
+     * Member bool to handle direction facing and flipping
+     * Temporarily keeping as SDL_Flip, until code for horizontal and vertical
+     * flipping is done.
+     */
+    SDL_RendererFlip m_flip = SDL_FLIP_NONE;
+    
 };
 
 #endif /* defined(__arpg__Sprite__) */

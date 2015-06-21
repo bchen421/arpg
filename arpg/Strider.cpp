@@ -14,7 +14,7 @@
 #pragma mark - Update Loop Methods
 void Strider::draw()
 {
-    TextureManager::Instance()->renderFromSpriteSheet(m_spritesheet, m_currentSpriteID, &m_boundingBox);
+    TextureManager::Instance()->renderFromSpriteSheet(m_spritesheet, m_currentSpriteID, &m_boundingBox, m_flip);
 }
 
 void Strider::update()
@@ -31,25 +31,36 @@ void Strider::handleInput(SDL_Event *event)
     
     const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
     
+    /* Walking up has precedence over walking down */
     if (currentKeyStates[SDL_SCANCODE_W])
     {
         walking = true;
         m_velocity.setY(m_velocity.getY() - 1);
     }
-    if (currentKeyStates[SDL_SCANCODE_A])
-    {
-        walking = true;
-        m_velocity.setX(m_velocity.getX() - 1);
-    }
-    if (currentKeyStates[SDL_SCANCODE_S])
+    else if (currentKeyStates[SDL_SCANCODE_S])
     {
         walking = true;
         m_velocity.setY(m_velocity.getY() + 1);
     }
+    
+    /* Walking right has precedence over walking left */
     if (currentKeyStates[SDL_SCANCODE_D])
     {
+        if (m_flip != SDL_FLIP_NONE)
+        {
+            m_flip = SDL_FLIP_NONE;
+        }
         walking = true;
         m_velocity.setX(m_velocity.getX() + 1);
+    }
+    else if (currentKeyStates[SDL_SCANCODE_A])
+    {
+        if (m_flip != SDL_FLIP_HORIZONTAL)
+        {
+            m_flip = SDL_FLIP_HORIZONTAL;
+        }
+        walking = true;
+        m_velocity.setX(m_velocity.getX() - 1);
     }
     
     if (walking)

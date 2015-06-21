@@ -76,13 +76,13 @@ void SandboxScene::load()
 {
     // Temporary method to use until loading via data is done
     // Temp loading of sprites and stuff
-    Strider* player = new Strider();
-    player->init();
-    m_gameObjects.push_back(player);
-    
     Etest* enemy01 = new Etest();
     enemy01->init();
     m_gameObjects.push_back(enemy01);
+    
+    Strider* player = new Strider();
+    player->init();
+    m_gameObjects.push_back(player);
     
     SandboxBackground* background = new SandboxBackground();
     background->init();

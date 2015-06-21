@@ -14,7 +14,7 @@
 #pragma mark - Update Loop Methods
 void Etest::draw()
 {
-    TextureManager::Instance()->renderFromSpriteSheet(m_spritesheet, m_currentSpriteID, &m_boundingBox);
+    TextureManager::Instance()->renderFromSpriteSheet(m_spritesheet, m_currentSpriteID, &m_boundingBox, m_flip);
 }
 
 void Etest::update()
@@ -177,6 +177,7 @@ void Etest::init()
     m_currentSpriteID = "";
     m_position = {400,100};
     m_walkingSpeed = 1.0;
+    m_flip = SDL_FLIP_HORIZONTAL;
     
     registerAnimations();
     changeState(kStateIdle);
