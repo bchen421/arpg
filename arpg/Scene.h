@@ -41,6 +41,10 @@ public:
     
 protected:
     
+    /* Quicksort of m_gameObjects */
+    void qSortGameObjects(int startIndex, int endIndex);
+    void swapGameObjectsAtIndex(int indexA, int indexB);
+    
     // Member bool to help with scene transition
     bool m_shouldExit = false;
     

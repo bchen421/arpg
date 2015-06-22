@@ -20,6 +20,8 @@ void SandboxScene::draw()
 {
     if (!m_shouldExit)
     {
+        int size = int(m_gameObjects.size());
+        qSortGameObjects(0, (size - 1));
         Scene::draw();
     }
 }
