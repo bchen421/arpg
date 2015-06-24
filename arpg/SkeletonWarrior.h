@@ -1,17 +1,17 @@
 //
-//  Etest.h
+//  SkeletonWarrior.h
 //  arpg
 //
-//  Created by Benjamin Chen on 6/18/15.
+//  Created by Benjamin Chen on 6/22/15.
 //  Copyright (c) 2015 chenjamin. All rights reserved.
 //
 
-#ifndef __arpg__Etest__
-#define __arpg__Etest__
+#ifndef __arpg__SkeletonWarrior__
+#define __arpg__SkeletonWarrior__
 
 #include "Enemy.h"
 
-class Etest : public Enemy
+class SkeletonWarrior : public Enemy
 {
     
 public:
@@ -28,18 +28,18 @@ public:
     virtual void changeState(GameObjectState newState);
     
     /* Polymorphic Destructor */
-    virtual ~Etest(){};
+    virtual ~SkeletonWarrior(){};
     
 protected:
     
-    /* Abstraction point for state management */
+    /* Abstraction Point for State Management */
     virtual void handleState();
     
     /* State Management Methods */
     virtual void idleState();
     virtual void walkingState();
-    virtual bool checkAggro(){ return false; }
-    
+    virtual bool checkAggro();
+        
     /* Animation Frame Updates */
     virtual void updateAnimationFrame();
     
@@ -48,4 +48,4 @@ protected:
     
 };
 
-#endif /* defined(__arpg__Etest__) */
+#endif /* defined(__arpg__SkeletonWarrior__) */

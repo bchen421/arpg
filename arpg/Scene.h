@@ -15,6 +15,7 @@
 #include "Constants.h"
 #include "Layer.h"
 #include "GameObject.h"
+#include "Player.h"
 
 class Scene
 {
@@ -27,6 +28,8 @@ public:
     
     // Getters
     SceneID getSceneID() { return m_sceneID; }
+    const std::vector<GameObject*> getGameObjects() { return m_gameObjects; }
+    const std::vector<Player*> getPlayerObjects() { return m_playerObjects; }
     
     // Update Loop Methods
     virtual void draw();
@@ -60,6 +63,12 @@ protected:
     // Rendered after background layers
     // To do: Sort by Z-Value
     std::vector<GameObject*> m_gameObjects;
+    
+    /*
+     * Vector of players used for collision checking only.
+     * Updates / z-ordering sorting still happen only in gameObjects vector
+     */
+    std::vector<Player*> m_playerObjects;
     
     // Vector of UI Components
     // Rendered after sprites

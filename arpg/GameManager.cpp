@@ -124,6 +124,9 @@ bool GameManager::createRenderer()
         return false;
     }
     
+    /* Supports Alpha Texture Blending of Dest Texture */
+    SDL_SetRenderDrawBlendMode(s_pRenderer, SDL_BLENDMODE_BLEND);
+    
     return true;
 }
 

@@ -44,7 +44,7 @@ protected:
     SDL_Rect m_boundingBox;
     
     /* Enumeration of the objects current state */
-    GameObjectState m_currentState = kStateIdle;
+    GameObjectState m_currentState = kStateNone;
     
     /* Enumeration to identify objects of different types */
     GameObjectType m_gameObjectType = kGameObject;

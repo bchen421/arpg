@@ -145,7 +145,7 @@ void Scene::clean()
         m_UILayers[i]->clean();
         delete m_UILayers[i];
     }
-    
+        
     m_backgroundLayers.clear();
     m_gameObjects.clear();
     m_UILayers.clear();

@@ -41,6 +41,7 @@ protected:
     /* State Management Methods */
     virtual void idleState()=0;
     virtual void walkingState()=0;
+    virtual bool checkAggro()=0;
     
     /* Updates animation frame from animation map */
     virtual void updateAnimationFrame()=0;
@@ -51,6 +52,7 @@ protected:
     /* Enemy Specific Data Members */
     Vector2D m_velocity;
     float m_walkingSpeed;
+    SDL_Rect m_aggroBoundingBox;
     
     /* Current animation, frame and map container */
     std::string m_currentAnimation;

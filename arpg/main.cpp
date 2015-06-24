@@ -36,11 +36,12 @@ int main(int argc, const char * argv[])
         else
         {
             GameManager::Instance()->loopEnter();
+            GameManager::Instance()->clear();
+            
             GameManager::Instance()->handleInput();
             GameManager::Instance()->update();
-            
-            GameManager::Instance()->clear();
             GameManager::Instance()->render();
+            
             GameManager::Instance()->loopExit();
         }
     }

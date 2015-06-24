@@ -43,6 +43,7 @@ public:
     int getWindowHeight() { return m_windowHeight; }
     bool getFullscreen() { return m_fullscreen; }
     bool getRunning() { return m_running; }
+    Scene* getCurrentScene() { return m_currentScene; }
     
     // Singleton Instance
     static GameManager* Instance();

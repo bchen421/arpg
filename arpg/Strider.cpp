@@ -8,6 +8,7 @@
 
 #include <sstream>
 
+#include "GameManager.h"
 #include "TextureManager.h"
 #include "Strider.h"
 
@@ -15,6 +16,10 @@
 void Strider::draw()
 {
     TextureManager::Instance()->renderFromSpriteSheet(m_spritesheet, m_currentSpriteID, &m_boundingBox, m_flip);
+    
+    /* Debug drawing of bounding box */
+    debug_render_color(0, 255, 0, 100);
+    debug_sdl_rect(m_boundingBox);
 }
 
 void Strider::update()
@@ -81,7 +86,7 @@ void Strider::changeState(GameObjectState newState)
         case kStateIdle:
             if (m_currentState != newState)
             {
-                printf("Changing to idle state!\n");
+                debug_print("%s\n", "Changing to State: kStateIdle");
                 m_currentState = newState;
             }
             break;
@@ -89,7 +94,7 @@ void Strider::changeState(GameObjectState newState)
         case kStateWalking:
             if (m_currentState != newState)
             {
-                printf("Changing to walking state!\n");
+                debug_print("%s\n", "Changing to State: kStateWalking");
                 m_currentState = newState;
             }
             break;
