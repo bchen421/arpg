@@ -83,6 +83,14 @@ void SkeletonWarrior::handleState()
             idleState();
             break;
             
+        case kStateAggroed:
+            aggroState();
+            break;
+            
+        case kStatePursuing:
+            pursuingState();
+            break;
+            
         default:
             break;
     }
@@ -100,6 +108,19 @@ void SkeletonWarrior::idleState()
         m_currentAnimation = "skwar_idle_animation";
         m_currentAnimationFrame = 0;
     }
+}
+
+void SkeletonWarrior::aggroState()
+{
+    /* Remove Aggro Box, no longer needed */
+    m_aggroBoundingBox = {0, 0, 0, 0};
+    
+    // To do: Logic around selecting current target
+    m_currentTarget = m_aggroList[0];
+    
+    // To do: Methods for attack, pursue, defend or pause
+    // Set aggressiveness factor for random behaviour
+    changeState(kStatePursuing);
 }
 
 bool SkeletonWarrior::checkAggro()
@@ -137,16 +158,71 @@ bool SkeletonWarrior::checkAggro()
         
         if (intersects == SDL_TRUE)
         {
-            debug_print("%s\n", "Aggro on player");
+            debug_print("%s\n", "Adding player to aggro list.");
+            m_aggroList.push_back(currentScene->getPlayerObjects()[i]);
+            changeState(kStateAggroed);
         }
     }
     
     return false;
 }
 
-void SkeletonWarrior::walkingState()
+void SkeletonWarrior::pursuingState()
 {
-    // Stub
+    if (m_currentAnimation == "skwar_walking_animation")
+    {
+        m_currentAnimationFrame += 1;
+    }
+    else
+    {
+        m_currentAnimation = "skwar_walking_animation";
+        m_currentAnimationFrame = 0;
+    }
+    
+    Vector2D targetPosition = getTargetPosition(m_currentTarget->getBoundingBox());
+    
+    m_velocity = targetPosition - m_position;
+    m_velocity.normalize();
+    m_velocity *= m_movementSpeed;
+    m_position += m_velocity;
+}
+
+#pragma mark - Utility Methods
+Vector2D SkeletonWarrior::getTargetPosition(SDL_Rect targetRect)
+{
+    Vector2D target;
+    GameUtilities::CornersOfRect targetCorners;
+    GameUtilities::CornersOfRect myCorners;
+    
+    targetCorners = GameUtilities::getCornersOfRect(&targetRect);
+    myCorners = GameUtilities::getCornersOfRect(&m_boundingBox);
+    
+    if ((targetCorners.bottomLeft - myCorners.bottomRight).length() <
+        (targetCorners.bottomRight - myCorners.bottomLeft).length())
+    {
+        /* Skeleton Warrior should face right */
+        m_flip = SDL_FLIP_NONE;
+
+        target = targetCorners.bottomLeft;
+        
+        /* I want my bottom right to match target's bottom left */
+        target.setY(target.getY() - m_boundingBox.h);
+        target.setX(target.getX() - m_boundingBox.w);
+    }
+    else
+    {
+        /* Skeleton Warrior should face left */
+         m_flip = SDL_FLIP_HORIZONTAL;
+        
+        target = targetCorners.bottomRight;
+        
+        /* I want my bottom left to target to match target's bottom right */
+        target.setY(target.getY() - m_boundingBox.h);
+    }
+    
+    debug_print("X: %g Y: %g\n", target.getX(), target.getY());
+    
+    return target;
 }
 
 #pragma mark - Animation Helper Methods
@@ -210,7 +286,7 @@ void SkeletonWarrior::registerAnimations()
         }
         
         /* Add animation frames to Vector */
-        for (int j = 0; j < 6; j++)
+        for (int j = 0; j < 10; j++)
         {
             walkingAnimationFrames.push_back(stream.str());
         }
@@ -231,8 +307,8 @@ void SkeletonWarrior::init()
     m_gameObjectType = kEnemyObject;
     m_spritesheet = "strider";
     m_currentSpriteID = "";
-    m_position = {400,100};
-    m_walkingSpeed = 1.0;
+    m_position = {0,0};
+    m_movementSpeed = 0.80;
     m_flip = SDL_FLIP_HORIZONTAL;
     
     registerAnimations();

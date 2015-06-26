@@ -176,7 +176,7 @@ void Etest::init()
     m_spritesheet = "strider";
     m_currentSpriteID = "";
     m_position = {400,100};
-    m_walkingSpeed = 1.0;
+    m_movementSpeed = 1.0;
     m_flip = SDL_FLIP_HORIZONTAL;
     
     registerAnimations();

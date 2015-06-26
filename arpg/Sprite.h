@@ -27,9 +27,6 @@ public:
     /* State Changing Interface */
     virtual void changeState(GameObjectState newState)=0;
     
-    /* Public Getters */
-    virtual Vector2D getPosition() { return m_position; }
-    
     /* Polymorphic Destructor */
     virtual ~Sprite() {}
     
@@ -56,9 +53,6 @@ protected:
      * that m_boundingBox has the current width and height
      */
     std::string m_currentSpriteID;
-    
-    /* Position of sprite.  Vector so it can do proper Vector math */
-    Vector2D m_position;
     
     /* 
      * Member bool to handle direction facing and flipping

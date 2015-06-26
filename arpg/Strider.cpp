@@ -235,7 +235,7 @@ void Strider::init()
     m_gameObjectType = kPlayerObject;
     m_spritesheet = "strider";
     m_currentSpriteID = "";
-    m_position = {100,100};
+    m_position = {0,0};
     m_walkingSpeed = 1.0;
     
     registerAnimations();

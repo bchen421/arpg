@@ -12,6 +12,7 @@
 #include <SDL2/SDL.h>
 
 #include "Constants.h"
+#include "GameUtilities.h"
 #include "Vector2D.h"
 
 class GameObject
@@ -31,9 +32,13 @@ public:
     virtual void changeState(GameObjectState newState)=0;
     
     /* Public Getters */
-    virtual SDL_Rect getBoundingBox() { return m_boundingBox; }
+    SDL_Rect getBoundingBox() { return m_boundingBox; }
     GameObjectType getGameObjectType() { return m_gameObjectType; }
     GameObjectState getGameObjectState() { return m_currentState; }
+    Vector2D getPosition() { return m_position; }
+    
+    /* Public Setters */
+    void setPosition(Vector2D position) { m_position = position; }
     
     /* Destructor */
     virtual ~GameObject(){}
@@ -42,6 +47,9 @@ protected:
 
     /* Bounding Box of the Object on the screen */
     SDL_Rect m_boundingBox;
+    
+    /* Position of GameObject.  Vector so it can do proper Vector math */
+    Vector2D m_position;
     
     /* Enumeration of the objects current state */
     GameObjectState m_currentState = kStateNone;

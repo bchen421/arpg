@@ -15,6 +15,7 @@
 		8FBF08671B31B3C500F8DA50 /* Strider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08651B31B3C500F8DA50 /* Strider.cpp */; };
 		8FBF086F1B33024400F8DA50 /* Etest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF086D1B33024400F8DA50 /* Etest.cpp */; };
 		8FBF08751B390B9900F8DA50 /* SkeletonWarrior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08731B390B9900F8DA50 /* SkeletonWarrior.cpp */; };
+		8FBF087A1B3C3AEB00F8DA50 /* GameUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08781B3C3AEB00F8DA50 /* GameUtilities.cpp */; };
 		8FD5AA351B225E2F008599D4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AA341B225E2F008599D4 /* main.cpp */; };
 		8FD5AA3F1B225F1F008599D4 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD5AA3B1B225F1F008599D4 /* SDL2_image.framework */; };
 		8FD5AA401B225F1F008599D4 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD5AA3C1B225F1F008599D4 /* SDL2_mixer.framework */; };
@@ -63,6 +64,8 @@
 		8FBF086E1B33024400F8DA50 /* Etest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Etest.h; path = arpg/Etest.h; sourceTree = "<group>"; };
 		8FBF08731B390B9900F8DA50 /* SkeletonWarrior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SkeletonWarrior.cpp; path = arpg/SkeletonWarrior.cpp; sourceTree = "<group>"; };
 		8FBF08741B390B9900F8DA50 /* SkeletonWarrior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SkeletonWarrior.h; path = arpg/SkeletonWarrior.h; sourceTree = "<group>"; };
+		8FBF08781B3C3AEB00F8DA50 /* GameUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameUtilities.cpp; sourceTree = "<group>"; };
+		8FBF08791B3C3AEB00F8DA50 /* GameUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameUtilities.h; sourceTree = "<group>"; };
 		8FD5AA311B225E2F008599D4 /* arpg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = arpg; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD5AA341B225E2F008599D4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8FD5AA3B1B225F1F008599D4 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = /Library/Frameworks/SDL2_image.framework; sourceTree = "<absolute>"; };
@@ -234,6 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				8FBF08351B2681D200F8DA50 /* Constants.h */,
+				8FBF08791B3C3AEB00F8DA50 /* GameUtilities.h */,
+				8FBF08781B3C3AEB00F8DA50 /* GameUtilities.cpp */,
 				8FD5AA341B225E2F008599D4 /* main.cpp */,
 			);
 			path = arpg;
@@ -335,6 +340,7 @@
 				8FBF085C1B2B19C100F8DA50 /* TexturePacker.cpp in Sources */,
 				8FD5AA4B1B254932008599D4 /* Sprite.cpp in Sources */,
 				8FD5AA4E1B261DAC008599D4 /* TextureManager.cpp in Sources */,
+				8FBF087A1B3C3AEB00F8DA50 /* GameUtilities.cpp in Sources */,
 				8FBF08671B31B3C500F8DA50 /* Strider.cpp in Sources */,
 				8FBF084A1B2930FE00F8DA50 /* SandboxBackground.cpp in Sources */,
 				8FBF08471B2729FC00F8DA50 /* SandboxScene.cpp in Sources */,

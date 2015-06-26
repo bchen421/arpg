@@ -32,13 +32,19 @@ public:
     
 protected:
     
+    /* Helper Method to return target position based on bounding box */
+    Vector2D getTargetPosition(SDL_Rect targetRect);
+    
     /* Abstraction Point for State Management */
     virtual void handleState();
     
-    /* State Management Methods */
+    /* Inherited State Management Methods */
     virtual void idleState();
-    virtual void walkingState();
+    virtual void aggroState();
     virtual bool checkAggro();
+    
+    /* Direct State Management Methods */
+    void pursuingState();
         
     /* Animation Frame Updates */
     virtual void updateAnimationFrame();

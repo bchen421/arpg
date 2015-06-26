@@ -12,6 +12,7 @@
 #include <map>
 #include <vector>
 
+#include "Player.h"
 #include "Sprite.h"
 
 class Enemy : public Sprite
@@ -40,7 +41,7 @@ protected:
     
     /* State Management Methods */
     virtual void idleState()=0;
-    virtual void walkingState()=0;
+    virtual void aggroState()=0;
     virtual bool checkAggro()=0;
     
     /* Updates animation frame from animation map */
@@ -51,8 +52,10 @@ protected:
     
     /* Enemy Specific Data Members */
     Vector2D m_velocity;
-    float m_walkingSpeed;
+    float m_movementSpeed;
     SDL_Rect m_aggroBoundingBox;
+    std::vector<Player*> m_aggroList;
+    Player* m_currentTarget;
     
     /* Current animation, frame and map container */
     std::string m_currentAnimation;
