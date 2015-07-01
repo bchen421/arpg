@@ -14,16 +14,30 @@
 
 void Sprite::updateBoundingBox()
 {
-    m_boundingBox.x = m_position.getX();
-    m_boundingBox.y = m_position.getY();
+    int anchorX = m_position.getX();
+    int anchorY = m_position.getY();
+    int width = TextureManager::Instance()->getSpriteWidth(m_spritesheet, m_currentSpriteID);
+    int height = TextureManager::Instance()->getSpriteHeight(m_spritesheet, m_currentSpriteID);
+    
+    if (m_flip == SDL_FLIP_NONE)
+    {
+        m_boundingBox.x = anchorX;
+        m_boundingBox.y = anchorY;
+        m_boundingBox.w = width;
+        m_boundingBox.h = height;
+    }
+    else if (m_flip == SDL_FLIP_HORIZONTAL)
+    {
+        m_boundingBox.x = anchorX - width;
+        m_boundingBox.y = anchorY;
+        m_boundingBox.w = width;
+        m_boundingBox.h = height;
+    }
 }
 
 void Sprite::setCurrentSpriteID(std::string spriteID)
 {
     m_currentSpriteID = spriteID;
-    
-    m_boundingBox.w = TextureManager::Instance()->getSpriteWidth(m_spritesheet, m_currentSpriteID);
-    m_boundingBox.h = TextureManager::Instance()->getSpriteHeight(m_spritesheet, m_currentSpriteID);
 }
 
 

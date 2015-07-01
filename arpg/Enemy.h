@@ -39,10 +39,14 @@ protected:
     /* Abstraction point to handle state and invoke other methods */
     virtual void handleState()=0;
     
-    /* State Management Methods */
+    /* Mandatory State Management Methods */
     virtual void idleState()=0;
-    virtual void aggroState()=0;
-    virtual bool checkAggro()=0;
+    
+    /* Stub / Override if needed State Management Methods */
+    virtual void aggroState() {}
+    virtual void slashAttackState() {}
+    virtual bool checkAggro() { return false; }
+    virtual bool checkInAttackRange() { return false; }
     
     /* Updates animation frame from animation map */
     virtual void updateAnimationFrame()=0;
@@ -54,6 +58,7 @@ protected:
     Vector2D m_velocity;
     float m_movementSpeed;
     SDL_Rect m_aggroBoundingBox;
+    SDL_Rect m_attackRangeBoundingBox;
     std::vector<Player*> m_aggroList;
     Player* m_currentTarget;
     

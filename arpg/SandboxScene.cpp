@@ -81,7 +81,7 @@ void SandboxScene::load()
     
     SkeletonWarrior* skwar01 = new SkeletonWarrior();
     skwar01->init();
-    skwar01->setPosition({400,100});
+    skwar01->setPosition({500,100});
     m_gameObjects.push_back(skwar01);
         
     Strider* player = new Strider();

@@ -41,6 +41,7 @@ enum GameObjectState
     /* Shared States */
     kStateNone,
     kStateIdle,
+    kStateSlashAttack,
     
     /* Player States */
     kStateWalking,

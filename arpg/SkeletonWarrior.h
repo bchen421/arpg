@@ -41,7 +41,9 @@ protected:
     /* Inherited State Management Methods */
     virtual void idleState();
     virtual void aggroState();
+    virtual void slashAttackState();
     virtual bool checkAggro();
+    virtual bool checkInAttackRange();
     
     /* Direct State Management Methods */
     void pursuingState();

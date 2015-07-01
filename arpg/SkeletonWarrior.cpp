@@ -24,6 +24,10 @@ void SkeletonWarrior::draw()
     /* Debug Aggro Rect Rendering */
     debug_render_color(255, 0, 0, 100);
     debug_sdl_rect(m_aggroBoundingBox);
+    
+    /* Debug Attack Range Rendering */
+    debug_render_color(255, 0, 0, 100);
+    debug_sdl_rect(m_attackRangeBoundingBox);
 }
 
 void SkeletonWarrior::update()
@@ -43,14 +47,8 @@ void SkeletonWarrior::changeState(GameObjectState newState)
             {
                 debug_print("%s\n", "Changing to State: kStateIdle");
                 m_currentState = newState;
-            }
-            break;
-            
-        case kStateWalking:
-            if (m_currentState != newState)
-            {
-                debug_print("%s\n", "Changing to State: kStateWalking");
-                m_currentState = newState;
+                m_currentAnimation = "skwar_idle_animation";
+                m_currentAnimationFrame = 0;
             }
             break;
             
@@ -67,8 +65,19 @@ void SkeletonWarrior::changeState(GameObjectState newState)
             {
                 debug_print("%s\n", "Changing to State: kStatePursuing");
                 m_currentState = newState;
+                m_currentAnimation = "skwar_walking_animation";
+                m_currentAnimationFrame = 0;
             }
             break;
+            
+        case kStateSlashAttack:
+            if (m_currentState != newState)
+            {
+                debug_print("%s\n", "Changing to State: kStateSlashAttack");
+                m_currentState = newState;
+                m_currentAnimation = "skwar_slash_animation";
+                m_currentAnimationFrame = -1;
+            }
             
         default:
             break;
@@ -91,6 +100,10 @@ void SkeletonWarrior::handleState()
             pursuingState();
             break;
             
+        case kStateSlashAttack:
+            slashAttackState();
+            break;
+            
         default:
             break;
     }
@@ -98,16 +111,8 @@ void SkeletonWarrior::handleState()
 
 void SkeletonWarrior::idleState()
 {
+    m_currentAnimationFrame += 1;
     checkAggro();
-    if (m_currentAnimation == "skwar_idle_animation")
-    {
-        m_currentAnimationFrame += 1;
-    }
-    else
-    {
-        m_currentAnimation = "skwar_idle_animation";
-        m_currentAnimationFrame = 0;
-    }
 }
 
 void SkeletonWarrior::aggroState()
@@ -123,21 +128,50 @@ void SkeletonWarrior::aggroState()
     changeState(kStatePursuing);
 }
 
+void SkeletonWarrior::pursuingState()
+{
+    m_currentAnimationFrame += 1;
+    if (!checkInAttackRange())
+    {
+        Vector2D targetPosition = getTargetPosition(m_currentTarget->getBoundingBox());
+        
+        m_velocity = targetPosition - m_position;
+        m_velocity.normalize();
+        m_velocity *= m_movementSpeed;
+        m_position += m_velocity;
+    }
+    else
+    {
+        changeState(kStateSlashAttack);
+    }
+}
+
+void SkeletonWarrior::slashAttackState()
+{
+    m_currentAnimationFrame += 1;
+    
+    /* Completed Slashing Animation */
+    if (m_currentAnimationFrame == m_animations["skwar_slash_animation"].size())
+    {
+        changeState(kStatePursuing);
+    }
+}
+
 bool SkeletonWarrior::checkAggro()
 {
     /* Build Aggro Bounding Box */
     int x, y, w, h;
     if (m_flip == SDL_FLIP_HORIZONTAL)
     {
-        x = m_position.getX() - 100;
-        y = m_position.getY() - 100;
+        x = m_boundingBox.x - 100;
+        y = m_boundingBox.y - 100;
         w = 100 + m_boundingBox.w;
         h = 200 + m_boundingBox.h;
     }
     else
     {
-        x = m_position.getX() + m_boundingBox.w;
-        y = m_position.getY() - 100;
+        x = m_boundingBox.x + m_boundingBox.w;
+        y = m_boundingBox.y - 100;
         w = 100 + m_boundingBox.w;
         h = 200 + m_boundingBox.h;
     }
@@ -167,24 +201,39 @@ bool SkeletonWarrior::checkAggro()
     return false;
 }
 
-void SkeletonWarrior::pursuingState()
+bool SkeletonWarrior::checkInAttackRange()
 {
-    if (m_currentAnimation == "skwar_walking_animation")
+    /* Build Attack Range Bounding Box */
+    int x, y, w, h;
+    w = 50;
+    
+    if (m_flip == SDL_FLIP_HORIZONTAL)
     {
-        m_currentAnimationFrame += 1;
+        x = m_boundingBox.x - w;
+        y = m_boundingBox.y;
+        h = m_boundingBox.h / 2;
     }
     else
     {
-        m_currentAnimation = "skwar_walking_animation";
-        m_currentAnimationFrame = 0;
+        x = m_boundingBox.x + m_boundingBox.w;
+        y = m_boundingBox.y;
+        h = m_boundingBox.h / 2;
     }
     
-    Vector2D targetPosition = getTargetPosition(m_currentTarget->getBoundingBox());
+    m_attackRangeBoundingBox = {x,y,w,h};
     
-    m_velocity = targetPosition - m_position;
-    m_velocity.normalize();
-    m_velocity *= m_movementSpeed;
-    m_position += m_velocity;
+    SDL_bool intersects;
+    SDL_Rect playerRect = m_aggroList[0]->getBoundingBox();
+    SDL_Rect resultRect;
+    
+    intersects = SDL_IntersectRect(&m_attackRangeBoundingBox, &playerRect, &resultRect);
+    
+    if (intersects == SDL_TRUE)
+    {
+        return true;
+    }
+    
+    return false;
 }
 
 #pragma mark - Utility Methods
@@ -200,6 +249,11 @@ Vector2D SkeletonWarrior::getTargetPosition(SDL_Rect targetRect)
     if ((targetCorners.bottomLeft - myCorners.bottomRight).length() <
         (targetCorners.bottomRight - myCorners.bottomLeft).length())
     {
+        /* Check if I need to be turned */
+        if (m_flip == SDL_FLIP_HORIZONTAL)
+        {
+            m_position.setX(m_position.getX() - m_boundingBox.w);
+        }
         /* Skeleton Warrior should face right */
         m_flip = SDL_FLIP_NONE;
 
@@ -211,6 +265,12 @@ Vector2D SkeletonWarrior::getTargetPosition(SDL_Rect targetRect)
     }
     else
     {
+        /* Check if I need to be turned */
+        if (m_flip == SDL_FLIP_NONE)
+        {
+            m_position.setX(m_position.getX() + m_boundingBox.w);
+        }
+        
         /* Skeleton Warrior should face left */
          m_flip = SDL_FLIP_HORIZONTAL;
         
@@ -220,7 +280,7 @@ Vector2D SkeletonWarrior::getTargetPosition(SDL_Rect targetRect)
         target.setY(target.getY() - m_boundingBox.h);
     }
     
-    debug_print("X: %g Y: %g\n", target.getX(), target.getY());
+    //debug_print("X: %g Y: %g\n", target.getX(), target.getY());
     
     return target;
 }
@@ -293,6 +353,33 @@ void SkeletonWarrior::registerAnimations()
     }
     
     m_animations["skwar_walking_animation"] = walkingAnimationFrames;
+    
+    std::vector<std::string> slashAnimationFrames;
+    
+    /* Slash Animation Name Prefix */
+    std::string slash = "skwar_slash_";
+    
+    for (int i = 1; i < 6; i++)
+    {
+        std::stringstream stream;
+        
+        if (i < 10)
+        {
+            stream << slash << 0 << i;
+        }
+        else
+        {
+            stream << slash << i;
+        }
+        
+        /* Add animation frames to Vector */
+        for (int j = 0; j < 8; j++)
+        {
+            slashAnimationFrames.push_back(stream.str());
+        }
+    }
+    
+    m_animations["skwar_slash_animation"] = slashAnimationFrames;
 }
 
 #pragma mark - Lifecycle Management
@@ -303,7 +390,9 @@ void SkeletonWarrior::clean()
 
 void SkeletonWarrior::init()
 {
-    m_boundingBox = {0,0,1,1};
+    m_boundingBox = {0,0,0,0};
+    m_aggroBoundingBox = {0,0,0,0};
+    m_attackRangeBoundingBox = {0,0,0,0};
     m_gameObjectType = kEnemyObject;
     m_spritesheet = "strider";
     m_currentSpriteID = "";

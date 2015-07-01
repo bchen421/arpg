@@ -17,6 +17,8 @@ void Strider::draw()
 {
     TextureManager::Instance()->renderFromSpriteSheet(m_spritesheet, m_currentSpriteID, &m_boundingBox, m_flip);
     
+    // void renderFromSpriteSheet(std::string spriteSheetID, std::string spriteID, SDL_Rect* destRect, SDL_RendererFlip flip = SDL_FLIP_NONE, const double angle = 0.0, SDL_Point* center = NULL);
+    
     /* Debug drawing of bounding box */
     debug_render_color(0, 255, 0, 100);
     debug_sdl_rect(m_boundingBox);
@@ -53,7 +55,9 @@ void Strider::handleInput(SDL_Event *event)
     {
         if (m_flip != SDL_FLIP_NONE)
         {
+            /* Temporary terribleness */
             m_flip = SDL_FLIP_NONE;
+            m_position.setX(m_position.getX() - m_boundingBox.w);
         }
         walking = true;
         m_velocity.setX(m_velocity.getX() + 1);
@@ -62,7 +66,9 @@ void Strider::handleInput(SDL_Event *event)
     {
         if (m_flip != SDL_FLIP_HORIZONTAL)
         {
+            /* Temporary terribleness */
             m_flip = SDL_FLIP_HORIZONTAL;
+            m_position.setX(m_position.getX() + m_boundingBox.w);
         }
         walking = true;
         m_velocity.setX(m_velocity.getX() - 1);
@@ -231,7 +237,7 @@ void Strider::clean()
 
 void Strider::init()
 {
-    m_boundingBox = {0,0,1,1};
+    m_boundingBox = {0,0,0,0};
     m_gameObjectType = kPlayerObject;
     m_spritesheet = "strider";
     m_currentSpriteID = "";
