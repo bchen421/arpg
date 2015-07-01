@@ -64,7 +64,6 @@ protected:
     std::string m_currentAnimation;
     int m_currentAnimationFrame;
     std::map<std::string,std::vector<std::string>> m_animations;
-    
 };
 
 #endif /* defined(__arpg__Player__) */

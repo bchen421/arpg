@@ -22,6 +22,10 @@ void Strider::draw()
     /* Debug drawing of bounding box */
     debug_render_color(0, 255, 0, 100);
     debug_sdl_rect(m_boundingBox);
+    
+    /* Debug Drawing of Hit Boxes */
+    debug_render_color(0, 0, 255, 100);
+    debug_sdl_rect(m_attackBoundingBox);
 }
 
 void Strider::update()
@@ -33,10 +37,22 @@ void Strider::update()
 
 void Strider::handleInput(SDL_Event *event)
 {
+    /* Stop accepting input if */
+    if (m_currentState == kStateForwardSlashAttack)
+    {
+        return;
+    }
+    
     m_velocity = {0,0};
     bool walking = false;
     
     const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
+    
+    if (currentKeyStates[SDL_SCANCODE_U])
+    {
+        changeState(kStateForwardSlashAttack);
+        return;
+    }
     
     /* Walking up has precedence over walking down */
     if (currentKeyStates[SDL_SCANCODE_W])
@@ -94,6 +110,8 @@ void Strider::changeState(GameObjectState newState)
             {
                 debug_print("%s\n", "Changing to State: kStateIdle");
                 m_currentState = newState;
+                m_currentAnimation = "strider_idle_animation";
+                m_currentAnimationFrame = -1;
             }
             break;
             
@@ -102,8 +120,19 @@ void Strider::changeState(GameObjectState newState)
             {
                 debug_print("%s\n", "Changing to State: kStateWalking");
                 m_currentState = newState;
+                m_currentAnimation = "strider_walking_animation";
+                m_currentAnimationFrame = 0;
             }
             break;
+            
+        case kStateForwardSlashAttack:
+            if (m_currentState != newState)
+            {
+                debug_print("%s\n", "Changing to State: kStateForwardSlashAttack");
+                m_currentState = newState;
+                m_currentAnimation = "strider_fslash_animation";
+                m_currentAnimationFrame = -1;
+            }
             
         default:
             break;
@@ -122,6 +151,10 @@ void Strider::handleState()
             walkingState();
             break;
             
+        case kStateForwardSlashAttack:
+            fslashState();
+            break;
+            
         default:
             break;
     }
@@ -129,6 +162,8 @@ void Strider::handleState()
 
 void Strider::walkingState()
 {
+    m_currentAnimationFrame += 1;
+    
     /* Normalize velocity */
     m_velocity.normalize();
     
@@ -137,28 +172,42 @@ void Strider::walkingState()
     
     /* Apply to position */
     m_position += m_velocity;
-    
-    if (m_currentAnimation == "strider_walking_animation")
-    {
-        m_currentAnimationFrame += 1;
-    }
-    else
-    {
-        m_currentAnimation = "strider_walking_animation";
-        m_currentAnimationFrame = 0;
-    }
 }
 
 void Strider::idleState()
 {
-    if (m_currentAnimation == "strider_idle_animation")
+    m_currentAnimationFrame += 1;
+}
+
+void Strider::fslashState()
+{
+    m_currentAnimationFrame += 1;
+    //updateBoundingBox();
+    
+    int x, y, w, h;
+    
+    if (m_flip == SDL_FLIP_HORIZONTAL)
     {
-        m_currentAnimationFrame += 1;
+        w = m_boundingBox.w - 25;
+        x = m_boundingBox.x + m_boundingBox.w - w - 25;
+        y = m_boundingBox.y;
+        h = m_boundingBox.h / 2;
     }
     else
     {
-        m_currentAnimation = "strider_idle_animation";
-        m_currentAnimationFrame = 0;
+        x = m_boundingBox.x + 25;
+        y = m_boundingBox.y;
+        w = m_boundingBox.w - 25;
+        h = m_boundingBox.h / 2;
+    }
+    
+    m_attackBoundingBox = {x,y,w,h};
+    
+    /* Completed Slashing Animation */
+    if (m_currentAnimationFrame == m_animations["strider_fslash_animation"].size())
+    {
+        changeState(kStateIdle);
+        m_attackBoundingBox = {0,0,0,0};
     }
 }
 
@@ -227,6 +276,30 @@ void Strider::registerAnimations()
     }
     
     m_animations["strider_walking_animation"] = walkingAnimationFrames;
+    
+    /* Vector of fslash animation frames */
+    std::vector<std::string> fslashAnimationFrames;
+    
+    std::string fslash = "strider_fslash_";
+    
+    for (int i = 1; i < 12; i++)
+    {
+        std::stringstream stream;
+        if (i < 10)
+        {
+            stream << fslash << 0 << i;
+        }
+        else
+        {
+            stream << fslash << i;
+        }
+        for (int j = 0; j < 3; j++)
+        {
+            fslashAnimationFrames.push_back(stream.str());
+        }
+    }
+    
+    m_animations["strider_fslash_animation"] = fslashAnimationFrames;
 }
 
 #pragma mark - Lifecycle Methods
@@ -243,6 +316,7 @@ void Strider::init()
     m_currentSpriteID = "";
     m_position = {0,0};
     m_walkingSpeed = 1.0;
+    m_attackBoundingBox = {0,0,0,0};
     
     registerAnimations();
     changeState(kStateIdle);

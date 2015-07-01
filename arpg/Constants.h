@@ -11,6 +11,9 @@
 
 #include <SDL2/SDL.h>
 
+/* Debugging Mode */
+#define LOCALDEBUG 1
+
 // Framerate Capping
 const int SCREEN_FPS = 60;
 const int TIME_PER_FRAME = 1000 / SCREEN_FPS;
@@ -42,6 +45,7 @@ enum GameObjectState
     kStateNone,
     kStateIdle,
     kStateSlashAttack,
+    kStateForwardSlashAttack,
     
     /* Player States */
     kStateWalking,

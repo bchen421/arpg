@@ -12,9 +12,6 @@
 #include <SDL2/SDL.h>
 #include "Vector2D.h"
 
-/* Debugging Mode */
-#define LOCALDEBUG 1
-
 #define debug_print(fmt, ...) \
 do { if (LOCALDEBUG) fprintf(stderr, "%s:%d:%s(): " fmt, __FILE__, \
 __LINE__, __func__, __VA_ARGS__); } while (0)
