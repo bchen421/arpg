@@ -27,6 +27,9 @@ public:
     /* State Changing Interface */
     virtual void changeState(GameObjectState newState);
     
+    /* Getters */
+    virtual float getWalkingSpeed();
+    
     // Polymorphic Destructor
     virtual ~Strider(){}
     

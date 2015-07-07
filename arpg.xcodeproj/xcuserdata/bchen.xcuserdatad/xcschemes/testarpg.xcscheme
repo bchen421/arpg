@@ -9,14 +9,14 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8FD5AA301B225E2F008599D4"
-               BuildableName = "arpg"
-               BlueprintName = "arpg"
+               BlueprintIdentifier = "8FE96A0D1B465F180060AECD"
+               BuildableName = "testarpg.xctest"
+               BlueprintName = "testarpg"
                ReferencedContainer = "container:arpg.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8FD5AA301B225E2F008599D4"
-            BuildableName = "arpg"
-            BlueprintName = "arpg"
+            BlueprintIdentifier = "8FE96A0D1B465F180060AECD"
+            BuildableName = "testarpg.xctest"
+            BlueprintName = "testarpg"
             ReferencedContainer = "container:arpg.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -53,22 +53,20 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "/Users/bchen/Dev/SDL2/arpg/arpg"
+      useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8FD5AA301B225E2F008599D4"
-            BuildableName = "arpg"
-            BlueprintName = "arpg"
+            BlueprintIdentifier = "8FE96A0D1B465F180060AECD"
+            BuildableName = "testarpg.xctest"
+            BlueprintName = "testarpg"
             ReferencedContainer = "container:arpg.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -78,16 +76,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8FD5AA301B225E2F008599D4"
-            BuildableName = "arpg"
-            BlueprintName = "arpg"
+            BlueprintIdentifier = "8FE96A0D1B465F180060AECD"
+            BuildableName = "testarpg.xctest"
+            BlueprintName = "testarpg"
             ReferencedContainer = "container:arpg.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

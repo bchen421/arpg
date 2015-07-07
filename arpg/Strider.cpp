@@ -30,14 +30,25 @@ void Strider::draw()
 
 void Strider::update()
 {
-    handleState();
-    updateAnimationFrame();
-    updateBoundingBox();
+    if (m_playerState)
+    {
+        m_playerState->update();
+    }
+    else
+    {
+        handleState();
+        updateAnimationFrame();
+        updateBoundingBox();
+    }
 }
 
 void Strider::handleInput(SDL_Event *event)
 {
-    /* Stop accepting input if */
+    if (m_playerState)
+    {
+        m_playerState->handleInput(event);
+        return;
+    }
     if (m_currentState == kStateForwardSlashAttack)
     {
         return;
@@ -54,7 +65,6 @@ void Strider::handleInput(SDL_Event *event)
         return;
     }
     
-    /* Walking up has precedence over walking down */
     if (currentKeyStates[SDL_SCANCODE_W])
     {
         walking = true;
@@ -66,12 +76,11 @@ void Strider::handleInput(SDL_Event *event)
         m_velocity.setY(m_velocity.getY() + 1);
     }
     
-    /* Walking right has precedence over walking left */
     if (currentKeyStates[SDL_SCANCODE_D])
     {
         if (m_flip != SDL_FLIP_NONE)
         {
-            /* Temporary terribleness */
+     
             m_flip = SDL_FLIP_NONE;
             m_position.setX(m_position.getX() - m_boundingBox.w);
         }
@@ -82,7 +91,6 @@ void Strider::handleInput(SDL_Event *event)
     {
         if (m_flip != SDL_FLIP_HORIZONTAL)
         {
-            /* Temporary terribleness */
             m_flip = SDL_FLIP_HORIZONTAL;
             m_position.setX(m_position.getX() + m_boundingBox.w);
         }
@@ -103,39 +111,38 @@ void Strider::handleInput(SDL_Event *event)
 #pragma mark - State Management Methods
 void Strider::changeState(GameObjectState newState)
 {
+    if (m_playerState)
+    {
+        m_playerState->onExit();
+        delete m_playerState;
+        m_playerState = NULL;
+    }
+
     switch (newState)
     {
         case kStateIdle:
-            if (m_currentState != newState)
-            {
-                debug_print("%s\n", "Changing to State: kStateIdle");
-                m_currentState = newState;
-                m_currentAnimation = "strider_idle_animation";
-                m_currentAnimationFrame = -1;
-            }
+            debug_print("%s\n", "Changing to State: kStateIdle");
+            m_playerState = new IdleState();
             break;
             
         case kStateWalking:
-            if (m_currentState != newState)
-            {
-                debug_print("%s\n", "Changing to State: kStateWalking");
-                m_currentState = newState;
-                m_currentAnimation = "strider_walking_animation";
-                m_currentAnimationFrame = 0;
-            }
+            debug_print("%s\n", "Changing to State: kStateWalking");
+            m_playerState = new WalkingState();
             break;
             
         case kStateForwardSlashAttack:
-            if (m_currentState != newState)
-            {
-                debug_print("%s\n", "Changing to State: kStateForwardSlashAttack");
-                m_currentState = newState;
-                m_currentAnimation = "strider_fslash_animation";
-                m_currentAnimationFrame = -1;
-            }
+            debug_print("%s\n", "Changing to State: kStateForwardSlashAttack");
+            m_playerState = new ForwardSlashState();
+            break;
             
         default:
             break;
+    }
+    
+    if (m_playerState)
+    {
+        m_playerState->init(this);
+        m_playerState->onEnter();
     }
 }
 
@@ -211,6 +218,12 @@ void Strider::fslashState()
     }
 }
 
+#pragma mark - Getters
+float Strider::getWalkingSpeed()
+{
+    return m_walkingSpeed;
+}
+
 # pragma mark - Animation Helper Methods
 void Strider::updateAnimationFrame()
 {
@@ -227,56 +240,6 @@ void Strider::updateAnimationFrame()
 /* Temporary method until data bound constructor can be build */
 void Strider::registerAnimations()
 {
-    /* Vector of animation frame names */
-    std::vector<std::string> idleAnimationFrames;
-    
-    /* Start of the idle animation keys */
-    std::string idle = "strider_idle_";
-    
-    for (int i = 1; i < 20; i++)
-    {
-        std::stringstream stream;
-        if (i < 10)
-        {
-            stream << idle << 0 << i;
-        }
-        else
-        {
-            stream << idle << i;
-        }
-        /* Number of frames each animation plays for */
-        for (int j = 0; j < 6; j++)
-        {
-            idleAnimationFrames.push_back(stream.str());
-        }
-    }
-    
-    m_animations["strider_idle_animation"] = idleAnimationFrames;
-    
-    /* Vector of walking animation frames */
-    std::vector<std::string> walkingAnimationFrames;
-    
-    std::string walking = "strider_walking_";
-    
-    for (int i = 1; i < 11; i++)
-    {
-        std::stringstream stream;
-        if (i < 10)
-        {
-            stream << walking << 0 << i;
-        }
-        else
-        {
-            stream << walking << i;
-        }
-        for (int j = 0; j < 6; j++)
-        {
-            walkingAnimationFrames.push_back(stream.str());
-        }
-    }
-    
-    m_animations["strider_walking_animation"] = walkingAnimationFrames;
-    
     /* Vector of fslash animation frames */
     std::vector<std::string> fslashAnimationFrames;
     
@@ -317,6 +280,7 @@ void Strider::init()
     m_position = {0,0};
     m_walkingSpeed = 1.0;
     m_attackBoundingBox = {0,0,0,0};
+    m_playerState = NULL;
     
     registerAnimations();
     changeState(kStateIdle);

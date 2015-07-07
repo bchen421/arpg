@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F25CFEE1B4888B9004C1D56 /* ForwardSlashState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CFEC1B4888B9004C1D56 /* ForwardSlashState.cpp */; };
+		8F55D32D1B45B58800704973 /* WalkingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F55D32B1B45B58800704973 /* WalkingState.cpp */; };
+		8F55D32F1B45BA0F00704973 /* State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F55D32E1B45BA0F00704973 /* State.cpp */; };
+		8FBE69561B46606100BF7E24 /* Vector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF085D1B2FC48F00F8DA50 /* Vector2D.cpp */; };
 		8FBF083C1B2683ED00F8DA50 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF083A1B2683ED00F8DA50 /* Scene.cpp */; };
 		8FBF08471B2729FC00F8DA50 /* SandboxScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08451B2729FC00F8DA50 /* SandboxScene.cpp */; };
 		8FBF084A1B2930FE00F8DA50 /* SandboxBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08481B2930FE00F8DA50 /* SandboxBackground.cpp */; };
@@ -16,6 +20,7 @@
 		8FBF086F1B33024400F8DA50 /* Etest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF086D1B33024400F8DA50 /* Etest.cpp */; };
 		8FBF08751B390B9900F8DA50 /* SkeletonWarrior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08731B390B9900F8DA50 /* SkeletonWarrior.cpp */; };
 		8FBF087A1B3C3AEB00F8DA50 /* GameUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08781B3C3AEB00F8DA50 /* GameUtilities.cpp */; };
+		8FBF08841B44E61600F8DA50 /* IdleState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08821B44E61600F8DA50 /* IdleState.cpp */; };
 		8FD5AA351B225E2F008599D4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AA341B225E2F008599D4 /* main.cpp */; };
 		8FD5AA3F1B225F1F008599D4 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD5AA3B1B225F1F008599D4 /* SDL2_image.framework */; };
 		8FD5AA401B225F1F008599D4 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD5AA3C1B225F1F008599D4 /* SDL2_mixer.framework */; };
@@ -24,6 +29,10 @@
 		8FD5AA471B225FD6008599D4 /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AA451B225FD6008599D4 /* GameManager.cpp */; };
 		8FD5AA4B1B254932008599D4 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AA491B254932008599D4 /* Sprite.cpp */; };
 		8FD5AA4E1B261DAC008599D4 /* TextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FD5AA4C1B261DAC008599D4 /* TextureManager.cpp */; };
+		8FE96A181B465F2D0060AECD /* gtest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE96A171B465F2D0060AECD /* gtest.framework */; };
+		8FE96A1A1B465F920060AECD /* GoogleTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8FE96A191B465F920060AECD /* GoogleTest.mm */; };
+		8FE96A1C1B465FC10060AECD /* UnitTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FE96A1B1B465FC10060AECD /* UnitTests.cpp */; };
+		8FE96A1D1B465FD30060AECD /* GameUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08781B3C3AEB00F8DA50 /* GameUtilities.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +48,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8F25CFEC1B4888B9004C1D56 /* ForwardSlashState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ForwardSlashState.cpp; path = arpg/ForwardSlashState.cpp; sourceTree = "<group>"; };
+		8F25CFED1B4888B9004C1D56 /* ForwardSlashState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForwardSlashState.h; path = arpg/ForwardSlashState.h; sourceTree = "<group>"; };
+		8F55D32B1B45B58800704973 /* WalkingState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WalkingState.cpp; path = arpg/WalkingState.cpp; sourceTree = "<group>"; };
+		8F55D32C1B45B58800704973 /* WalkingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WalkingState.h; path = arpg/WalkingState.h; sourceTree = "<group>"; };
+		8F55D32E1B45BA0F00704973 /* State.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = State.cpp; path = arpg/State.cpp; sourceTree = "<group>"; };
 		8FBF08351B2681D200F8DA50 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		8FBF083A1B2683ED00F8DA50 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Scene.cpp; path = arpg/Scene.cpp; sourceTree = "<group>"; };
 		8FBF083B1B2683ED00F8DA50 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scene.h; path = arpg/Scene.h; sourceTree = "<group>"; };
@@ -66,6 +80,10 @@
 		8FBF08741B390B9900F8DA50 /* SkeletonWarrior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SkeletonWarrior.h; path = arpg/SkeletonWarrior.h; sourceTree = "<group>"; };
 		8FBF08781B3C3AEB00F8DA50 /* GameUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameUtilities.cpp; sourceTree = "<group>"; };
 		8FBF08791B3C3AEB00F8DA50 /* GameUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameUtilities.h; sourceTree = "<group>"; };
+		8FBF08801B44223800F8DA50 /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = State.h; path = arpg/State.h; sourceTree = "<group>"; };
+		8FBF08821B44E61600F8DA50 /* IdleState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IdleState.cpp; path = arpg/IdleState.cpp; sourceTree = "<group>"; };
+		8FBF08831B44E61600F8DA50 /* IdleState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IdleState.h; path = arpg/IdleState.h; sourceTree = "<group>"; };
+		8FBF08861B4581C300F8DA50 /* PlayerStates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerStates.h; sourceTree = "<group>"; };
 		8FD5AA311B225E2F008599D4 /* arpg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = arpg; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD5AA341B225E2F008599D4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8FD5AA3B1B225F1F008599D4 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = /Library/Frameworks/SDL2_image.framework; sourceTree = "<absolute>"; };
@@ -78,6 +96,11 @@
 		8FD5AA4A1B254932008599D4 /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sprite.h; path = arpg/Sprite.h; sourceTree = "<group>"; };
 		8FD5AA4C1B261DAC008599D4 /* TextureManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureManager.cpp; path = arpg/TextureManager.cpp; sourceTree = "<group>"; };
 		8FD5AA4D1B261DAC008599D4 /* TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureManager.h; path = arpg/TextureManager.h; sourceTree = "<group>"; };
+		8FE96A0E1B465F180060AECD /* testarpg.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testarpg.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FE96A111B465F180060AECD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FE96A171B465F2D0060AECD /* gtest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gtest.framework; path = ../../../../../Library/Frameworks/gtest.framework; sourceTree = "<group>"; };
+		8FE96A191B465F920060AECD /* GoogleTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GoogleTest.mm; sourceTree = "<group>"; };
+		8FE96A1B1B465FC10060AECD /* UnitTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitTests.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +112,14 @@
 				8FD5AA3F1B225F1F008599D4 /* SDL2_image.framework in Frameworks */,
 				8FD5AA401B225F1F008599D4 /* SDL2_mixer.framework in Frameworks */,
 				8FD5AA411B225F1F008599D4 /* SDL2_ttf.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FE96A0B1B465F180060AECD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FE96A181B465F2D0060AECD /* gtest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,12 +241,29 @@
 			name = "Enemy Classes";
 			sourceTree = "<group>";
 		};
+		8FBF087B1B44205400F8DA50 /* GameObject States */ = {
+			isa = PBXGroup;
+			children = (
+				8FBF08801B44223800F8DA50 /* State.h */,
+				8F55D32E1B45BA0F00704973 /* State.cpp */,
+				8FBF08831B44E61600F8DA50 /* IdleState.h */,
+				8FBF08821B44E61600F8DA50 /* IdleState.cpp */,
+				8F55D32C1B45B58800704973 /* WalkingState.h */,
+				8F55D32B1B45B58800704973 /* WalkingState.cpp */,
+				8F25CFED1B4888B9004C1D56 /* ForwardSlashState.h */,
+				8F25CFEC1B4888B9004C1D56 /* ForwardSlashState.cpp */,
+			);
+			name = "GameObject States";
+			sourceTree = "<group>";
+		};
 		8FD5AA281B225E2F008599D4 = {
 			isa = PBXGroup;
 			children = (
+				8FE96A0F1B465F180060AECD /* testarpg */,
 				8FD5AA331B225E2F008599D4 /* arpg */,
 				8FD5AA441B225F9C008599D4 /* Singletons */,
 				8FBF08561B2B18C200F8DA50 /* Utilities */,
+				8FBF087B1B44205400F8DA50 /* GameObject States */,
 				8FD5AA481B25491F008599D4 /* Game Objects */,
 				8FBF08391B2683AA00F8DA50 /* Scenes */,
 				8FBF084B1B2A478D00F8DA50 /* Assets */,
@@ -229,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				8FD5AA311B225E2F008599D4 /* arpg */,
+				8FE96A0E1B465F180060AECD /* testarpg.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -237,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				8FBF08351B2681D200F8DA50 /* Constants.h */,
+				8FBF08861B4581C300F8DA50 /* PlayerStates.h */,
 				8FBF08791B3C3AEB00F8DA50 /* GameUtilities.h */,
 				8FBF08781B3C3AEB00F8DA50 /* GameUtilities.cpp */,
 				8FD5AA341B225E2F008599D4 /* main.cpp */,
@@ -247,6 +297,7 @@
 		8FD5AA431B225F5C008599D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8FE96A171B465F2D0060AECD /* gtest.framework */,
 				8FD5AA3B1B225F1F008599D4 /* SDL2_image.framework */,
 				8FD5AA3C1B225F1F008599D4 /* SDL2_mixer.framework */,
 				8FD5AA3D1B225F1F008599D4 /* SDL2_ttf.framework */,
@@ -276,6 +327,24 @@
 			name = "Game Objects";
 			sourceTree = "<group>";
 		};
+		8FE96A0F1B465F180060AECD /* testarpg */ = {
+			isa = PBXGroup;
+			children = (
+				8FE96A1B1B465FC10060AECD /* UnitTests.cpp */,
+				8FE96A101B465F180060AECD /* Supporting Files */,
+			);
+			path = testarpg;
+			sourceTree = "<group>";
+		};
+		8FE96A101B465F180060AECD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8FE96A191B465F920060AECD /* GoogleTest.mm */,
+				8FE96A111B465F180060AECD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -296,6 +365,23 @@
 			productReference = 8FD5AA311B225E2F008599D4 /* arpg */;
 			productType = "com.apple.product-type.tool";
 		};
+		8FE96A0D1B465F180060AECD /* testarpg */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FE96A161B465F180060AECD /* Build configuration list for PBXNativeTarget "testarpg" */;
+			buildPhases = (
+				8FE96A0A1B465F180060AECD /* Sources */,
+				8FE96A0B1B465F180060AECD /* Frameworks */,
+				8FE96A0C1B465F180060AECD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = testarpg;
+			productName = testarpg;
+			productReference = 8FE96A0E1B465F180060AECD /* testarpg.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -306,6 +392,9 @@
 				ORGANIZATIONNAME = chenjamin;
 				TargetAttributes = {
 					8FD5AA301B225E2F008599D4 = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					8FE96A0D1B465F180060AECD = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
 				};
@@ -323,9 +412,20 @@
 			projectRoot = "";
 			targets = (
 				8FD5AA301B225E2F008599D4 /* arpg */,
+				8FE96A0D1B465F180060AECD /* testarpg */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8FE96A0C1B465F180060AECD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8FD5AA2D1B225E2F008599D4 /* Sources */ = {
@@ -333,18 +433,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FBF08751B390B9900F8DA50 /* SkeletonWarrior.cpp in Sources */,
+				8FBF08841B44E61600F8DA50 /* IdleState.cpp in Sources */,
 				8FBF083C1B2683ED00F8DA50 /* Scene.cpp in Sources */,
 				8FD5AA351B225E2F008599D4 /* main.cpp in Sources */,
 				8FD5AA471B225FD6008599D4 /* GameManager.cpp in Sources */,
 				8FBF086F1B33024400F8DA50 /* Etest.cpp in Sources */,
+				8F25CFEE1B4888B9004C1D56 /* ForwardSlashState.cpp in Sources */,
 				8FBF085C1B2B19C100F8DA50 /* TexturePacker.cpp in Sources */,
 				8FD5AA4B1B254932008599D4 /* Sprite.cpp in Sources */,
 				8FD5AA4E1B261DAC008599D4 /* TextureManager.cpp in Sources */,
+				8F55D32D1B45B58800704973 /* WalkingState.cpp in Sources */,
 				8FBF087A1B3C3AEB00F8DA50 /* GameUtilities.cpp in Sources */,
+				8F55D32F1B45BA0F00704973 /* State.cpp in Sources */,
 				8FBF08671B31B3C500F8DA50 /* Strider.cpp in Sources */,
 				8FBF084A1B2930FE00F8DA50 /* SandboxBackground.cpp in Sources */,
 				8FBF08471B2729FC00F8DA50 /* SandboxScene.cpp in Sources */,
 				8FBF085F1B2FC48F00F8DA50 /* Vector2D.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FE96A0A1B465F180060AECD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FE96A1A1B465F920060AECD /* GoogleTest.mm in Sources */,
+				8FE96A1C1B465FC10060AECD /* UnitTests.cpp in Sources */,
+				8FBE69561B46606100BF7E24 /* Vector2D.cpp in Sources */,
+				8FE96A1D1B465FD30060AECD /* GameUtilities.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +561,41 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		8FE96A141B465F180060AECD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = testarpg/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8FE96A151B465F180060AECD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = testarpg/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -467,6 +617,15 @@
 			buildConfigurations = (
 				8FD5AA391B225E2F008599D4 /* Debug */,
 				8FD5AA3A1B225E2F008599D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FE96A161B465F180060AECD /* Build configuration list for PBXNativeTarget "testarpg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FE96A141B465F180060AECD /* Debug */,
+				8FE96A151B465F180060AECD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

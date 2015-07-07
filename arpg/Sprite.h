@@ -9,6 +9,8 @@
 #ifndef __arpg__Sprite__
 #define __arpg__Sprite__
 
+#include <string>
+
 #include "GameObject.h"
 
 class Sprite : public GameObject
@@ -24,25 +26,29 @@ public:
     virtual void clean()=0;
     virtual void init()=0;
     
-    /* State Changing Interface */
-    virtual void changeState(GameObjectState newState)=0;
+    /* Getter */
+    Vector2D getPosition() { return m_position; }
+    SDL_RendererFlip getFlip() { return m_flip; }
     
     /* Polymorphic Destructor */
     virtual ~Sprite() {}
     
 protected:
     
-    /* Updates Bounding Box with (x,y) from m_position */
-    virtual void updateBoundingBox();
-    
-    /* Abstraction to call other state handling methods */
-    virtual void handleState()=0;
+    /* State Changing Interface */
+    virtual void changeState(GameObjectState newState)=0;
     
     /*
      * Wrapper to set the current spriteID and then
      * update width and height of m_boundingBox
      */
     virtual void setCurrentSpriteID(std::string spriteID);
+    
+    /* Updates Bounding Box with (x,y) from m_position */
+    virtual void updateBoundingBox();
+    
+    /* Abstraction to call other state handling methods */
+    virtual void handleState()=0;
     
     /* Spritesheet key to render spriteID from */
     std::string m_spritesheet;

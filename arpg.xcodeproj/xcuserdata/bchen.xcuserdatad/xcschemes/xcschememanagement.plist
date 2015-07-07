@@ -9,10 +9,30 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>testarpg.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>8F55D3331B463FEA00704973</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8F55D3401B46406000704973</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8FD5AA301B225E2F008599D4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8FE96A0D1B465F180060AECD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
