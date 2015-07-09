@@ -11,6 +11,7 @@
 
 /* Component of Player Class */
 class Player;
+class GameObject;
 
 #include <string>
 #include <vector>
@@ -40,12 +41,24 @@ public:
     
 protected:
     
+    /* Player Getters */
+    SDL_RendererFlip getPlayerFlip();
+    SDL_Rect getPlayerBoundingBox();
+    const std::vector<SDL_Rect>* getPlayerHitboxes();
+    const std::vector<SDL_Rect>* getPlayerHurtboxes();
+    
     /* Player Setters */
     void updatePlayerBoundingBox();
     void setPlayerSpriteID(std::string spriteID);
     void setPlayerPosition(Vector2D position);
     void setPlayerFlip(SDL_RendererFlip flip);
     void setPlayerState(GameObjectState newState);
+    
+    /* Player Hitbox and Hurtbox Wrappers */
+    void clearPlayerHitboxes();
+    void clearPlayerHurtboxes();
+    void addPlayerHitbox(SDL_Rect hitbox);
+    void addPlayerHurtbox(SDL_Rect hurtbox);
     
     /* Temp Utility Method to Load in Animation Frames */
     virtual void registerAnimations()=0;

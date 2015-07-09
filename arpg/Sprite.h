@@ -47,9 +47,6 @@ protected:
     /* Updates Bounding Box with (x,y) from m_position */
     virtual void updateBoundingBox();
     
-    /* Abstraction to call other state handling methods */
-    virtual void handleState()=0;
-    
     /* Spritesheet key to render spriteID from */
     std::string m_spritesheet;
     

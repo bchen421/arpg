@@ -41,18 +41,11 @@ protected:
     /* State Changing Interface */
     virtual void changeState(GameObjectState newState)=0;
     
-    /* Abstraction to call other state handling methods */
-    virtual void handleState()=0;
-    
-    /* State Management Helpers */
-    virtual void idleState()=0;
-    virtual void walkingState()=0;
-    
-    /* Updates animation frame from map */
-    virtual void updateAnimationFrame()=0;
-    
-    /* Temporary function until config data loader is worked on */
-    virtual void registerAnimations()=0;
+    /* Hitbox and Hurtbox management */
+    void clearHitboxes() { m_hitboxes.clear(); };
+    void clearHurtboxes() { m_hurtboxes.clear(); };
+    void addHitbox(SDL_Rect hitbox) { m_hitboxes.push_back(hitbox); }
+    void addHurtbox(SDL_Rect hurtbox) { m_hurtboxes.push_back(hurtbox); }
     
     /*
      * Player specific movement data members.  Velocity is normalized and then
@@ -70,6 +63,10 @@ protected:
     std::string m_currentAnimation;
     int m_currentAnimationFrame;
     std::map<std::string,std::vector<std::string>> m_animations;
+    
+    /* Hitbox and Hurtbox Containers */
+    std::vector<SDL_Rect> m_hitboxes;
+    std::vector<SDL_Rect> m_hurtboxes;
     
 };
 

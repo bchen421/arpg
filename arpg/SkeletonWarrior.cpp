@@ -180,7 +180,6 @@ bool SkeletonWarrior::checkAggro()
     /* Variables to hold intersection test results */
     SDL_bool intersects;
     SDL_Rect playerRect;
-    SDL_Rect resultRect;
     
     /* Grab Current Scene and player objects vector */
     Scene* currentScene = GameManager::Instance()->getCurrentScene();
@@ -188,7 +187,7 @@ bool SkeletonWarrior::checkAggro()
     {
         playerRect = currentScene->getPlayerObjects()[i]->getBoundingBox();
         
-        intersects = SDL_IntersectRect(&m_aggroBoundingBox, &playerRect, &resultRect);
+        intersects = SDL_HasIntersection(&m_aggroBoundingBox, &playerRect);
         
         if (intersects == SDL_TRUE)
         {
@@ -224,9 +223,8 @@ bool SkeletonWarrior::checkInAttackRange()
     
     SDL_bool intersects;
     SDL_Rect playerRect = m_aggroList[0]->getBoundingBox();
-    SDL_Rect resultRect;
     
-    intersects = SDL_IntersectRect(&m_attackRangeBoundingBox, &playerRect, &resultRect);
+    intersects = SDL_HasIntersection(&m_attackRangeBoundingBox, &playerRect);
     
     if (intersects == SDL_TRUE)
     {

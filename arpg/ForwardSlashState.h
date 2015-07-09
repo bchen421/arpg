@@ -33,6 +33,14 @@ private:
     /* Helper Methods */
     virtual void updateAnimationFrame();
     
+    /* Checks for Hitbox Collisions */
+    void checkCollisions();
+    bool checkNonPlayerObjects();
+    bool checkHitboxCollision(GameObject* object);
+    
+    /* Vector of things I have hit */
+    std::vector<GameObject*> m_collidedGameObjects;
+    
     /* Private Data Member to track animation completion */
     bool m_completed;
     

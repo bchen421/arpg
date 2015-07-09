@@ -35,20 +35,6 @@ public:
     
 protected:
     
-    /* Abstraction to call other state handling methods */
-    virtual void handleState();
-    
-    /* State Management Helpers */
-    virtual void walkingState();
-    virtual void idleState();
-    virtual void fslashState();
-    
-    /* Updates animation frame from map */
-    virtual void updateAnimationFrame();
-    
-    /* Temporary function until config data loader is worked on */
-    virtual void registerAnimations();
-    
     /* Bounding Boxes */
     SDL_Rect m_attackBoundingBox;
     

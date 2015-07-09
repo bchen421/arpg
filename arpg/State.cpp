@@ -9,6 +9,27 @@
 #include "Player.h"
 #include "State.h"
 
+/* Player Getters */
+SDL_RendererFlip State::getPlayerFlip()
+{
+    return m_player->m_flip;
+}
+
+SDL_Rect State::getPlayerBoundingBox()
+{
+    return m_player->m_boundingBox;
+}
+
+const std::vector<SDL_Rect>* State::getPlayerHitboxes()
+{
+    return &m_player->m_hitboxes;
+}
+
+const std::vector<SDL_Rect>* State::getPlayerHurtboxes()
+{
+    return &m_player->m_hurtboxes;
+}
+
 /* Player Setters */
 void State::updatePlayerBoundingBox()
 {
@@ -33,4 +54,24 @@ void State::setPlayerPosition(Vector2D position)
 void State::setPlayerState(GameObjectState newState)
 {
     m_player->changeState(newState);
+}
+
+/* Player Hitbox and Hurtbox Management */
+void State::clearPlayerHitboxes()
+{
+    m_player->clearHitboxes();
+}
+
+void State::clearPlayerHurtboxes()
+{
+    m_player->clearHurtboxes();
+}
+void State::addPlayerHitbox(SDL_Rect hitbox)
+{
+    m_player->addHitbox(hitbox);
+}
+
+void State::addPlayerHurtbox(SDL_Rect hurtbox)
+{
+    m_player->addHurtbox(hurtbox);
 }
