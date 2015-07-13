@@ -25,12 +25,15 @@ public:
     void renderTexture(std::string textureID, SDL_Rect* destRect);
     bool loadTexture(std::string filename, std::string textureID);
     bool loadTexturePackerSpriteSheet(std::string spritesheetID, std::string imageFile, std::string dataFile);
+    bool loadSpriteSheetMetaData(std::string spritesheetID, std::string dataFile);
     void renderFromSpriteSheet(std::string spriteSheetID, std::string spriteID, SDL_Rect* destRect, SDL_RendererFlip flip = SDL_FLIP_NONE, const double angle = 0.0, SDL_Point* center = NULL);
     //void renderFromSpriteSheet(std::string spriteSheetID, std::string spriteID, SDL_Rect* destRect, bool m_flipX, bool m_flipY, const double angle = 0.0, SDL_Point* center = NULL);
     
     // Public Data Getters
     int getSpriteWidth(std::string spritesheet, std::string spriteID);
     int getSpriteHeight(std::string spritesheet, std::string spriteID);
+    const std::vector<SDL_Rect>& getSpriteHurtboxes(std::string spritesheet, std::string spriteID);
+    const std::vector<SDL_Rect>& getSpriteHitboxes(std::string spritesheet, std::string spriteID);
 
     // Singleton Instance
     static TextureManager* Instance();

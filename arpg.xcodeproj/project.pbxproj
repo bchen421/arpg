@@ -50,6 +50,7 @@
 /* Begin PBXFileReference section */
 		8F25CFEC1B4888B9004C1D56 /* ForwardSlashState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ForwardSlashState.cpp; path = arpg/ForwardSlashState.cpp; sourceTree = "<group>"; };
 		8F25CFED1B4888B9004C1D56 /* ForwardSlashState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForwardSlashState.h; path = arpg/ForwardSlashState.h; sourceTree = "<group>"; };
+		8F25CFF01B4F2B91004C1D56 /* strider.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = strider.json; path = arpg/assets/metadata/strider.json; sourceTree = "<group>"; };
 		8F55D32B1B45B58800704973 /* WalkingState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WalkingState.cpp; path = arpg/WalkingState.cpp; sourceTree = "<group>"; };
 		8F55D32C1B45B58800704973 /* WalkingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WalkingState.h; path = arpg/WalkingState.h; sourceTree = "<group>"; };
 		8F55D32E1B45BA0F00704973 /* State.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = State.cpp; path = arpg/State.cpp; sourceTree = "<group>"; };
@@ -126,6 +127,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F25CFEF1B4F2B17004C1D56 /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				8F25CFF01B4F2B91004C1D56 /* strider.json */,
+			);
+			name = Metadata;
+			sourceTree = "<group>";
+		};
 		8FBF08391B2683AA00F8DA50 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +190,7 @@
 			children = (
 				8FBF084C1B2A479B00F8DA50 /* Images */,
 				8FBF084D1B2A47A800F8DA50 /* Spritesheets */,
+				8F25CFEF1B4F2B17004C1D56 /* Metadata */,
 			);
 			name = Assets;
 			sourceTree = "<group>";

@@ -15,6 +15,16 @@
 TextureManager* TextureManager::s_pInstance = 0;
 
 #pragma mark - Public Metadata Getters
+const std::vector<SDL_Rect>& TextureManager::getSpriteHurtboxes(std::string spritesheet, std::string spriteID)
+{
+    return m_spriteDataMaps[spritesheet][spriteID].hurtboxes;
+}
+
+const std::vector<SDL_Rect>& TextureManager::getSpriteHitboxes(std::string spritesheet, std::string spriteID)
+{
+    return m_spriteDataMaps[spritesheet][spriteID].hitboxes;
+}
+
 int TextureManager::getSpriteWidth(std::string spritesheet, std::string spriteID)
 {
     return m_spriteDataMaps[spritesheet][spriteID].spriteWidth;
@@ -43,6 +53,11 @@ void TextureManager::renderTexture(std::string textureID, SDL_Rect* destRect)
 }
 
 #pragma mark - Utility Methods
+bool TextureManager::loadSpriteSheetMetaData(std::string spritesheetID, std::string dataFile)
+{
+    return TexturePacker::parseSpriteMetaData(dataFile, m_spriteDataMaps[spritesheetID]);
+}
+
 bool TextureManager::loadTexturePackerSpriteSheet(std::string spritesheetID, std::string imageFile, std::string dataFile)
 {
     if (!loadSpriteSheet(spritesheetID, imageFile))

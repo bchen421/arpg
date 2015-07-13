@@ -10,6 +10,7 @@
 #define __arpg__TexturePacker__
 
 #include <string>
+#include <vector>
 #include <map>
 #include <SDL2/SDL.h>
 
@@ -26,9 +27,15 @@ public:
         int spriteHeight;
         bool rotated;
         bool trimmed;
+        std::vector<SDL_Rect> hitboxes;
+        std::vector<SDL_Rect> hurtboxes;
     };
     
+    /* Parses SpriteSheet JSON for texture data */
     static bool parseSpritesheetData(std::string filename, std::map<std::string,TexturePacker::spriteData>& map);
+    
+    /* Parses SpriteSheet JSON Metadata */
+    static bool parseSpriteMetaData(std::string filename, std::map<std::string, TexturePacker::spriteData>& map);
     
 private:
     

@@ -76,8 +76,9 @@ void SandboxScene::reloadScene()
 #pragma mark - Initialization and Cleanup
 void SandboxScene::load()
 {
-    // Temporary method to use until loading via data is done
-    // Temp loading of sprites and stuff
+    TextureManager::Instance()->loadTexturePackerSpriteSheet("strider", "assets/spritesheets/strider.png", "assets/spritesheets/strider.json");
+    
+    TextureManager::Instance()->loadSpriteSheetMetaData("strider", "assets/metadata/strider.json");
     
     SkeletonWarrior* skwar01 = new SkeletonWarrior();
     skwar01->init();
@@ -104,6 +105,6 @@ void SandboxScene::clean()
 void SandboxScene::init()
 {
     m_sceneID = kSandboxScene;
-    TextureManager::Instance()->loadTexturePackerSpriteSheet("strider", "assets/spritesheets/strider.png", "assets/spritesheets/strider.json");
+    
     load();
 }

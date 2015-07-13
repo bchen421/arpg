@@ -9,9 +9,63 @@
 #include <fstream>
 #include <iostream>
 
+#include "Constants.h"
+#include "GameUtilities.h"
 #include "TexturePacker.h"
 
 #pragma mark - Spritesheet Data Utilities
+bool TexturePacker::parseSpriteMetaData(std::string filename, std::map<std::string, TexturePacker::spriteData>& map)
+{
+    std::string jsonString;
+    
+    if (!getFileContents(filename, &jsonString))
+    {
+        printf("Unable to parse metadata file: %s", filename.c_str());
+        return false;
+    }
+    
+    rapidjson::Document document;
+    
+    document.Parse(jsonString.c_str());
+    
+    assert(document.HasMember("metadata"));
+    const rapidjson::Value& metadata = document["metadata"];
+    
+    for (rapidjson::Value::ConstMemberIterator itr = metadata.MemberBegin(); itr != metadata.MemberEnd(); itr++)
+    {
+        std::string spriteKey = itr->name.GetString();
+        
+        if (metadata[spriteKey.c_str()].HasMember("hurtboxes"))
+        {
+            debug_print("%s has hurtbox data.\n", itr->name.GetString());
+            const rapidjson::Value& hurtboxes = metadata[spriteKey.c_str()]["hurtboxes"];
+            assert(hurtboxes.IsArray());
+            
+            for (rapidjson::SizeType i = 0; i < hurtboxes.Size(); i++)
+            {
+                int x = hurtboxes[i]["x"].GetInt();
+                int y = hurtboxes[i]["y"].GetInt();
+                int w = hurtboxes[i]["w"].GetInt();
+                int h = hurtboxes[i]["h"].GetInt();
+                
+                debug_print("Creating SDL_Rect X: %d Y: %d W: %d H: %d", x, y, w, h);
+                
+                SDL_Rect hurtbox = {x,y,w,h};
+                
+                map[spriteKey].hurtboxes.push_back(hurtbox);
+                
+            }
+        }
+        
+        if (document["metadata"][spriteKey.c_str()].HasMember("hitboxes"))
+        {
+            debug_print("%s has hitbox data.\n", itr->name.GetString());
+            const rapidjson::Value& hitboxes = document["metadata"][spriteKey.c_str()]["hitboxes"];
+        }
+    }
+    
+    return true;
+}
 
 bool TexturePacker::parseSpritesheetData(std::string filename, std::map<std::string,TexturePacker::spriteData>& map)
 {
@@ -29,7 +83,7 @@ bool TexturePacker::parseSpritesheetData(std::string filename, std::map<std::str
     
     if (!validateSpritesheetJSON(&document))
     {
-        printf("%s if not in the expected format!\n", filename.c_str());
+        printf("%s is not in the expected format!\n", filename.c_str());
         return false;
     }
     
