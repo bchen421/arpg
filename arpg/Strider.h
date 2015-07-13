@@ -35,11 +35,6 @@ public:
     
 protected:
     
-    /* Override to handle hit and hurtboxes */
-    virtual void updateBoundingBox();
-    void updateHurtboxes();
-    void updateHitboxes();
-    
     /* Bounding Boxes */
     SDL_Rect m_attackBoundingBox;
     

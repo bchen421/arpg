@@ -43,6 +43,10 @@ bool TexturePacker::parseSpriteMetaData(std::string filename, std::map<std::stri
             
             for (rapidjson::SizeType i = 0; i < hurtboxes.Size(); i++)
             {
+                assert(hurtboxes[i].HasMember("x"));
+                assert(hurtboxes[i].HasMember("y"));
+                assert(hurtboxes[i].HasMember("w"));
+                assert(hurtboxes[i].HasMember("h"));
                 int x = hurtboxes[i]["x"].GetInt();
                 int y = hurtboxes[i]["y"].GetInt();
                 int w = hurtboxes[i]["w"].GetInt();
@@ -61,6 +65,23 @@ bool TexturePacker::parseSpriteMetaData(std::string filename, std::map<std::stri
         {
             debug_print("%s has hitbox data.\n", itr->name.GetString());
             const rapidjson::Value& hitboxes = document["metadata"][spriteKey.c_str()]["hitboxes"];
+            assert(hitboxes.IsArray());
+            
+            for (rapidjson::SizeType i = 0; i < hitboxes.Size(); i++)
+            {
+                assert(hitboxes[i].HasMember("x"));
+                assert(hitboxes[i].HasMember("y"));
+                assert(hitboxes[i].HasMember("w"));
+                assert(hitboxes[i].HasMember("h"));
+                int x = hitboxes[i]["x"].GetInt();
+                int y = hitboxes[i]["y"].GetInt();
+                int w = hitboxes[i]["w"].GetInt();
+                int h = hitboxes[i]["h"].GetInt();
+                
+                SDL_Rect hitbox = {x,y,w,h};
+                
+                map[spriteKey].hitboxes.push_back(hitbox);
+            }
         }
     }
     

@@ -15,8 +15,6 @@
 #pragma mark - Game Loop Methods
 void ForwardSlashState::update()
 {
-    clearPlayerHitboxes();
-    clearPlayerHurtboxes();
     updateAnimationFrame();
     updatePlayerBoundingBox();
     if (m_completed)
@@ -25,30 +23,6 @@ void ForwardSlashState::update()
     }
     else
     {
-        int x, y, w, h;
-        
-        SDL_Rect boundingBox = getPlayerBoundingBox();
-        
-        if (getPlayerFlip() == SDL_FLIP_HORIZONTAL)
-        {
-            w = boundingBox.w - 25;
-            x = boundingBox.x + boundingBox.w - w - 25;
-            y = boundingBox.y;
-            h = boundingBox.h / 2;
-        }
-        else
-        {
-            x = boundingBox.x + 25;
-            y = boundingBox.y;
-            w = boundingBox.w - 25;
-            h = boundingBox.h / 2;
-        }
-        
-        
-        SDL_Rect attackBoundingBox = {x,y,w,h};
-        
-        addPlayerHitbox(attackBoundingBox);
-        
         checkCollisions();
     }
 }

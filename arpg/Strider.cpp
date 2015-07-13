@@ -23,8 +23,6 @@ void Strider::draw()
     debug_render_color(255, 255, 0, 100);
     debug_sdl_rect(m_boundingBox);
     
-    //debug_print("Hurtboxes: %lu\n", TextureManager::Instance()->getSpriteHurtboxes(m_spritesheet, m_currentSpriteID).size());
-    
     /* Debug Drawing of Hurt Boxes */
     debug_render_color(255, 0, 0, 100);
     for (int i = 0; i < m_hurtboxes.size(); i++)
@@ -48,40 +46,6 @@ void Strider::update()
 void Strider::handleInput(SDL_Event *event)
 {
     m_playerState->handleInput(event);
-}
-
-#pragma mark - Boundingbox Management
-
-void Strider::updateBoundingBox()
-{
-    Sprite::updateBoundingBox();
-    updateHurtboxes();
-    updateHitboxes();
-}
-
-void Strider::updateHurtboxes()
-{
-    clearHurtboxes();
-    for (int i = 0; i < TextureManager::Instance()->getSpriteHurtboxes(m_spritesheet, m_currentSpriteID).size(); i++)
-    {
-        SDL_Rect hurtbox = TextureManager::Instance()->getSpriteHurtboxes(m_spritesheet, m_currentSpriteID)[i];
-        if (m_flip == SDL_FLIP_NONE)
-        {
-            hurtbox.x = m_boundingBox.x + hurtbox.x;
-            hurtbox.y = m_boundingBox.y + hurtbox.y;
-        }
-        else if (m_flip == SDL_FLIP_HORIZONTAL)
-        {
-            hurtbox.x = m_boundingBox.x + m_boundingBox.w - hurtbox.x - hurtbox.w;
-            hurtbox.y = m_boundingBox.y + hurtbox.y;
-        }
-        addHurtbox(hurtbox);
-    }
-}
-
-void Strider::updateHitboxes()
-{
-    
 }
 
 #pragma mark - State Management Methods

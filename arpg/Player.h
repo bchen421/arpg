@@ -46,6 +46,9 @@ protected:
     void clearHurtboxes() { m_hurtboxes.clear(); };
     void addHitbox(SDL_Rect hitbox) { m_hitboxes.push_back(hitbox); }
     void addHurtbox(SDL_Rect hurtbox) { m_hurtboxes.push_back(hurtbox); }
+    virtual void updateBoundingBox();
+    void updateHitboxes();
+    void updateHurtboxes();
     
     /*
      * Player specific movement data members.  Velocity is normalized and then
