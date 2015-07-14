@@ -41,15 +41,6 @@ protected:
     /* State Changing Interface */
     virtual void changeState(GameObjectState newState)=0;
     
-    /* Hitbox and Hurtbox management */
-    void clearHitboxes() { m_hitboxes.clear(); };
-    void clearHurtboxes() { m_hurtboxes.clear(); };
-    void addHitbox(SDL_Rect hitbox) { m_hitboxes.push_back(hitbox); }
-    void addHurtbox(SDL_Rect hurtbox) { m_hurtboxes.push_back(hurtbox); }
-    virtual void updateBoundingBox();
-    void updateHitboxes();
-    void updateHurtboxes();
-    
     /*
      * Player specific movement data members.  Velocity is normalized and then
      * multiplied by the appropriate speed data member to handle movement speed
@@ -66,10 +57,6 @@ protected:
     std::string m_currentAnimation;
     int m_currentAnimationFrame;
     std::map<std::string,std::vector<std::string>> m_animations;
-    
-    /* Hitbox and Hurtbox Containers */
-    std::vector<SDL_Rect> m_hitboxes;
-    std::vector<SDL_Rect> m_hurtboxes;
     
 };
 

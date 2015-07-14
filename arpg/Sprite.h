@@ -35,6 +35,14 @@ public:
     
 protected:
     
+    /* Hitbox and Hurtbox management */
+    void clearHitboxes() { m_hitboxes.clear(); };
+    void clearHurtboxes() { m_hurtboxes.clear(); };
+    void addHitbox(SDL_Rect hitbox) { m_hitboxes.push_back(hitbox); }
+    void addHurtbox(SDL_Rect hurtbox) { m_hurtboxes.push_back(hurtbox); }
+    void updateHitboxes();
+    void updateHurtboxes();
+    
     /* State Changing Interface */
     virtual void changeState(GameObjectState newState)=0;
     
@@ -63,6 +71,10 @@ protected:
      * flipping is done.
      */
     SDL_RendererFlip m_flip = SDL_FLIP_NONE;
+    
+    /* Hitbox and Hurtbox Containers */
+    std::vector<SDL_Rect> m_hitboxes;
+    std::vector<SDL_Rect> m_hurtboxes;
     
 };
 

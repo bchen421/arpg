@@ -33,11 +33,6 @@ public:
     // Polymorphic Destructor
     virtual ~Strider(){}
     
-protected:
-    
-    /* Bounding Boxes */
-    SDL_Rect m_attackBoundingBox;
-    
 };
 
 #endif /* defined(__arpg__Strider__) */

@@ -19,3 +19,17 @@ GameUtilities::CornersOfRect GameUtilities::getCornersOfRect(SDL_Rect* rect)
     
     return corners;
 }
+
+void GameUtilities::transformChildRect(SDL_Rect* parent, SDL_Rect* child, SDL_RendererFlip* flip)
+{
+    if (*flip == SDL_FLIP_NONE)
+    {
+        child->x = parent->x + child->x;
+        child->y = parent->y + child->y;
+    }
+    else if (*flip == SDL_FLIP_HORIZONTAL)
+    {
+        child->x = parent->x + parent->w - child->x - child->w;
+        child->y = parent->y + child->y;
+    }
+}

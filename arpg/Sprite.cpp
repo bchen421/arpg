@@ -33,6 +33,35 @@ void Sprite::updateBoundingBox()
         m_boundingBox.w = width;
         m_boundingBox.h = height;
     }
+    
+    updateHitboxes();
+    updateHurtboxes();
+}
+
+void Sprite::updateHurtboxes()
+{
+    clearHurtboxes();
+    
+    for (int i = 0; i < TextureManager::Instance()->getSpriteHurtboxes(m_spritesheet, m_currentSpriteID).size(); i++)
+    {
+        SDL_Rect box = TextureManager::Instance()->getSpriteHurtboxes(m_spritesheet, m_currentSpriteID)[i];
+        GameUtilities::transformChildRect(&m_boundingBox, &box, &m_flip);
+        
+        addHurtbox(box);
+    }
+}
+
+void Sprite::updateHitboxes()
+{
+    clearHitboxes();
+    
+    for (int i = 0; i < TextureManager::Instance()->getSpriteHitboxes(m_spritesheet, m_currentSpriteID).size(); i++)
+    {
+        SDL_Rect box = TextureManager::Instance()->getSpriteHitboxes(m_spritesheet, m_currentSpriteID)[i];
+        GameUtilities::transformChildRect(&m_boundingBox, &box, &m_flip);
+        
+        addHitbox(box);
+    }
 }
 
 void Sprite::setCurrentSpriteID(std::string spriteID)

@@ -17,8 +17,6 @@ void Strider::draw()
 {
     TextureManager::Instance()->renderFromSpriteSheet(m_spritesheet, m_currentSpriteID, &m_boundingBox, m_flip);
     
-    // void renderFromSpriteSheet(std::string spriteSheetID, std::string spriteID, SDL_Rect* destRect, SDL_RendererFlip flip = SDL_FLIP_NONE, const double angle = 0.0, SDL_Point* center = NULL);
-    
     /* Debug drawing of bounding box */
     debug_render_color(255, 255, 0, 100);
     debug_sdl_rect(m_boundingBox);
@@ -108,7 +106,6 @@ void Strider::init()
     m_currentSpriteID = "";
     m_position = {0,0};
     m_walkingSpeed = 1.0;
-    m_attackBoundingBox = {0,0,0,0};
     m_playerState = NULL;
     m_hitboxes.clear();
     m_hurtboxes.clear();

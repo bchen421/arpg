@@ -10,6 +10,8 @@
 
 #include "GameUtilities.h"
 
+/* Test for Game Utility Static Methods */
+
 TEST(GameUtilitiesCornersOfRect, topLeft ) {
     SDL_Rect rect = {5,10,8,16};
     GameUtilities::CornersOfRect corners;
@@ -40,5 +42,31 @@ TEST(GameUtilitiesCornersOfRect, bottomRight ) {
     corners = GameUtilities::getCornersOfRect(&rect);
     EXPECT_EQ(13, corners.bottomRight.getX());
     EXPECT_EQ(26, corners.bottomRight.getY());
+}
+
+TEST(GameUtilitiesTransformChildRect, noFlip)
+{
+    SDL_Rect parentRect = {100,200,50,75};
+    SDL_Rect childRect = {5,10,15,20};
+    SDL_RendererFlip flip = SDL_FLIP_NONE;
+    GameUtilities::transformChildRect(&parentRect, &childRect, &flip);
+    
+    EXPECT_EQ(105, childRect.x);
+    EXPECT_EQ(210, childRect.y);
+    EXPECT_EQ(15, childRect.w);
+    EXPECT_EQ(20, childRect.h);
+}
+
+TEST(GameUtilitiesTransformChildRect, horizontalFlip)
+{
+    SDL_Rect parentRect = {100,200,50,75};
+    SDL_Rect childRect = {5,10,15,20};
+    SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
+    GameUtilities::transformChildRect(&parentRect, &childRect, &flip);
+    
+    EXPECT_EQ(130, childRect.x);
+    EXPECT_EQ(210, childRect.y);
+    EXPECT_EQ(15, childRect.w);
+    EXPECT_EQ(20, childRect.h);
 }
 

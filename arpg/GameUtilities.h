@@ -43,6 +43,9 @@ public:
      */
     static CornersOfRect getCornersOfRect(SDL_Rect* rect);
     
+    /* Convenience Static Method to calculate child sprite SDL_Rect data */
+    static void transformChildRect(SDL_Rect* parent, SDL_Rect* child, SDL_RendererFlip* flip);
+    
 };
 
 #endif /* defined(__arpg__GameUtilities__) */

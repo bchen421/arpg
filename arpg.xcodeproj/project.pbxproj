@@ -10,7 +10,6 @@
 		8F25CFEE1B4888B9004C1D56 /* ForwardSlashState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CFEC1B4888B9004C1D56 /* ForwardSlashState.cpp */; };
 		8F55D32D1B45B58800704973 /* WalkingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F55D32B1B45B58800704973 /* WalkingState.cpp */; };
 		8F55D32F1B45BA0F00704973 /* State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F55D32E1B45BA0F00704973 /* State.cpp */; };
-		8F7B8C091B546D5F005C55E2 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B8C081B546D5F005C55E2 /* Player.cpp */; };
 		8FBE69561B46606100BF7E24 /* Vector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF085D1B2FC48F00F8DA50 /* Vector2D.cpp */; };
 		8FBF083C1B2683ED00F8DA50 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF083A1B2683ED00F8DA50 /* Scene.cpp */; };
 		8FBF08471B2729FC00F8DA50 /* SandboxScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08451B2729FC00F8DA50 /* SandboxScene.cpp */; };
@@ -18,7 +17,6 @@
 		8FBF085C1B2B19C100F8DA50 /* TexturePacker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF085A1B2B19C100F8DA50 /* TexturePacker.cpp */; };
 		8FBF085F1B2FC48F00F8DA50 /* Vector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF085D1B2FC48F00F8DA50 /* Vector2D.cpp */; };
 		8FBF08671B31B3C500F8DA50 /* Strider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08651B31B3C500F8DA50 /* Strider.cpp */; };
-		8FBF086F1B33024400F8DA50 /* Etest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF086D1B33024400F8DA50 /* Etest.cpp */; };
 		8FBF08751B390B9900F8DA50 /* SkeletonWarrior.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08731B390B9900F8DA50 /* SkeletonWarrior.cpp */; };
 		8FBF087A1B3C3AEB00F8DA50 /* GameUtilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08781B3C3AEB00F8DA50 /* GameUtilities.cpp */; };
 		8FBF08841B44E61600F8DA50 /* IdleState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FBF08821B44E61600F8DA50 /* IdleState.cpp */; };
@@ -55,7 +53,6 @@
 		8F55D32B1B45B58800704973 /* WalkingState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WalkingState.cpp; path = arpg/WalkingState.cpp; sourceTree = "<group>"; };
 		8F55D32C1B45B58800704973 /* WalkingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WalkingState.h; path = arpg/WalkingState.h; sourceTree = "<group>"; };
 		8F55D32E1B45BA0F00704973 /* State.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = State.cpp; path = arpg/State.cpp; sourceTree = "<group>"; };
-		8F7B8C081B546D5F005C55E2 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = arpg/Player.cpp; sourceTree = "<group>"; };
 		8FBF08351B2681D200F8DA50 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		8FBF083A1B2683ED00F8DA50 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Scene.cpp; path = arpg/Scene.cpp; sourceTree = "<group>"; };
 		8FBF083B1B2683ED00F8DA50 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scene.h; path = arpg/Scene.h; sourceTree = "<group>"; };
@@ -77,8 +74,6 @@
 		8FBF08651B31B3C500F8DA50 /* Strider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Strider.cpp; path = arpg/Strider.cpp; sourceTree = "<group>"; };
 		8FBF08661B31B3C500F8DA50 /* Strider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Strider.h; path = arpg/Strider.h; sourceTree = "<group>"; };
 		8FBF086A1B325EF300F8DA50 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Enemy.h; path = arpg/Enemy.h; sourceTree = "<group>"; };
-		8FBF086D1B33024400F8DA50 /* Etest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Etest.cpp; path = arpg/Etest.cpp; sourceTree = "<group>"; };
-		8FBF086E1B33024400F8DA50 /* Etest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Etest.h; path = arpg/Etest.h; sourceTree = "<group>"; };
 		8FBF08731B390B9900F8DA50 /* SkeletonWarrior.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SkeletonWarrior.cpp; path = arpg/SkeletonWarrior.cpp; sourceTree = "<group>"; };
 		8FBF08741B390B9900F8DA50 /* SkeletonWarrior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SkeletonWarrior.h; path = arpg/SkeletonWarrior.h; sourceTree = "<group>"; };
 		8FBF08781B3C3AEB00F8DA50 /* GameUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameUtilities.cpp; sourceTree = "<group>"; };
@@ -182,7 +177,6 @@
 				8FD5AA4A1B254932008599D4 /* Sprite.h */,
 				8FD5AA491B254932008599D4 /* Sprite.cpp */,
 				8FBF08621B310D7C00F8DA50 /* Player.h */,
-				8F7B8C081B546D5F005C55E2 /* Player.cpp */,
 				8FBF086A1B325EF300F8DA50 /* Enemy.h */,
 			);
 			name = "Base Classes";
@@ -246,8 +240,6 @@
 		8FBF08681B325ED800F8DA50 /* Enemy Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8FBF086E1B33024400F8DA50 /* Etest.h */,
-				8FBF086D1B33024400F8DA50 /* Etest.cpp */,
 				8FBF08741B390B9900F8DA50 /* SkeletonWarrior.h */,
 				8FBF08731B390B9900F8DA50 /* SkeletonWarrior.cpp */,
 			);
@@ -447,11 +439,9 @@
 			files = (
 				8FBF08751B390B9900F8DA50 /* SkeletonWarrior.cpp in Sources */,
 				8FBF08841B44E61600F8DA50 /* IdleState.cpp in Sources */,
-				8F7B8C091B546D5F005C55E2 /* Player.cpp in Sources */,
 				8FBF083C1B2683ED00F8DA50 /* Scene.cpp in Sources */,
 				8FD5AA351B225E2F008599D4 /* main.cpp in Sources */,
 				8FD5AA471B225FD6008599D4 /* GameManager.cpp in Sources */,
-				8FBF086F1B33024400F8DA50 /* Etest.cpp in Sources */,
 				8F25CFEE1B4888B9004C1D56 /* ForwardSlashState.cpp in Sources */,
 				8FBF085C1B2B19C100F8DA50 /* TexturePacker.cpp in Sources */,
 				8FD5AA4B1B254932008599D4 /* Sprite.cpp in Sources */,

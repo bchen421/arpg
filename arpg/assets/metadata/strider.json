@@ -178,47 +178,58 @@
 },
 "strider_fslash_02":
 {
-	"hurtboxes":[{"x":10,"y":0,"w":90,"h":90}]
+    "hurtboxes":[{"x":10,"y":0,"w":90,"h":90}],
+    "hitboxes":[{"x":10,"y":0,"w":90,"h":50}]
 },
 "strider_fslash_03":
 {
-	"hurtboxes":[{"x":10,"y":0,"w":90,"h":90}]
+    "hurtboxes":[{"x":10,"y":0,"w":90,"h":90}],
+    "hitboxes":[{"x":10,"y":0,"w":90,"h":50}]
 },
 "strider_fslash_04":
 {
-	"hurtboxes":[{"x":10,"y":0,"w":90,"h":90}]
+    "hurtboxes":[{"x":10,"y":0,"w":90,"h":90}],
+    "hitboxes":[{"x":10,"y":0,"w":90,"h":50}]
 },
 "strider_fslash_05":
 {
-	"hurtboxes":[{"x":10,"y":0,"w":90,"h":90}]
+    "hurtboxes":[{"x":10,"y":0,"w":90,"h":90}],
+    "hitboxes":[{"x":10,"y":0,"w":90,"h":50}]
 },
 "strider_fslash_06":
 {
-	"hurtboxes":[{"x":10,"y":0,"w":90,"h":90}]
+    "hurtboxes":[{"x":10,"y":0,"w":90,"h":90}],
+    "hitboxes":[{"x":10,"y":0,"w":90,"h":50}]
 },
 "strider_fslash_07":
 {
-	"hurtboxes":[{"x":10,"y":0,"w":90,"h":90}]
+    "hurtboxes":[{"x":10,"y":0,"w":90,"h":90}],
+    "hitboxes":[{"x":10,"y":0,"w":90,"h":50}]
 },
 "strider_fslash_08":
 {
-	"hurtboxes":[{"x":10,"y":0,"w":90,"h":90}]
+    "hurtboxes":[{"x":10,"y":0,"w":90,"h":90}],
+    "hitboxes":[{"x":10,"y":0,"w":90,"h":50}]
 },
 "strider_fslash_09":
 {
-	"hurtboxes":[{"x":10,"y":0,"w":90,"h":90}]
+    "hurtboxes":[{"x":10,"y":0,"w":90,"h":90}],
+    "hitboxes":[{"x":10,"y":0,"w":90,"h":50}]
 },
 "strider_fslash_10":
 {
-	"hurtboxes":[{"x":10,"y":0,"w":90,"h":90}]
+    "hurtboxes":[{"x":10,"y":0,"w":90,"h":90}],
+    "hitboxes":[{"x":10,"y":0,"w":90,"h":50}]
 },
 "strider_fslash_11":
 {
-	"hurtboxes":[{"x":10,"y":0,"w":90,"h":90}]
+    "hurtboxes":[{"x":10,"y":0,"w":90,"h":90}],
+    "hitboxes":[{"x":10,"y":0,"w":90,"h":50}]
 },
 "strider_fslash_12":
 {
-	"hurtboxes":[{"x":10,"y":0,"w":90,"h":90}]
+    "hurtboxes":[{"x":10,"y":0,"w":90,"h":90}],
+    "hitboxes":[{"x":10,"y":0,"w":90,"h":50}]
 },
 "strider_idle_01":
 {
