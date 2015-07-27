@@ -29,6 +29,7 @@ void WalkingState::handleInput(SDL_Event* event)
     m_velocity = {0,0};
     bool walking = false;
     
+    JoystickInput currentInput = getPlayerJoystickInput();
     const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
     
     if (currentKeyStates[SDL_SCANCODE_U])
@@ -37,18 +38,21 @@ void WalkingState::handleInput(SDL_Event* event)
         return;
     }
     
-    if (currentKeyStates[SDL_SCANCODE_W])
+    if (currentInput == kUpPosition || currentInput == kUpRightPosition
+        || currentInput == kUpLeftPosition)
     {
         walking = true;
         m_velocity.setY(m_velocity.getY() - 1);
     }
-    else if (currentKeyStates[SDL_SCANCODE_S])
+    else if (currentInput == kDownPosition || currentInput == kDownRightPosition
+             || currentInput == kDownLeftPosition)
     {
         walking = true;
         m_velocity.setY(m_velocity.getY() + 1);
     }
     
-    if (currentKeyStates[SDL_SCANCODE_D])
+    if (currentInput == kRightPosition || currentInput == kDownRightPosition
+        || currentInput == kUpRightPosition)
     {
         if (m_player->getFlip() != SDL_FLIP_NONE)
         {
@@ -60,7 +64,8 @@ void WalkingState::handleInput(SDL_Event* event)
         walking = true;
         m_velocity.setX(m_velocity.getX() + 1);
     }
-    else if (currentKeyStates[SDL_SCANCODE_A])
+    else if (currentInput == kLeftPosition || currentInput == kUpLeftPosition ||
+             currentInput == kDownLeftPosition)
     {
         if (m_player->getFlip() != SDL_FLIP_HORIZONTAL)
         {

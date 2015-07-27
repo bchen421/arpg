@@ -42,6 +42,7 @@ public:
 protected:
     
     /* Player Getters */
+    JoystickInput getPlayerJoystickInput();
     SDL_RendererFlip getPlayerFlip();
     SDL_Rect getPlayerBoundingBox();
     const std::vector<SDL_Rect>* getPlayerHitboxes();

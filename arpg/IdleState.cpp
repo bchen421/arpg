@@ -23,8 +23,7 @@ void IdleState::handleInput(SDL_Event* event)
     GameObjectState targetState = kStateNone;
     const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
     
-    if (currentKeyStates[SDL_SCANCODE_W] || currentKeyStates[SDL_SCANCODE_A] ||
-        currentKeyStates[SDL_SCANCODE_S] || currentKeyStates[SDL_SCANCODE_D])
+    if (getPlayerJoystickInput() != kNeutralPosition)
     {
         targetState = kStateWalking;
     }

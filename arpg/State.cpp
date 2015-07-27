@@ -9,7 +9,12 @@
 #include "Player.h"
 #include "State.h"
 
-/* Player Getters */
+#pragma mark - Player Getters
+JoystickInput State::getPlayerJoystickInput()
+{
+    return m_player->getJoystickInput();
+}
+
 SDL_RendererFlip State::getPlayerFlip()
 {
     return m_player->m_flip;
@@ -30,7 +35,7 @@ const std::vector<SDL_Rect>* State::getPlayerHurtboxes()
     return &m_player->m_hurtboxes;
 }
 
-/* Player Setters */
+#pragma mark - Player Setters
 void State::updatePlayerBoundingBox()
 {
     m_player->updateBoundingBox();

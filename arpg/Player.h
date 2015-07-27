@@ -12,6 +12,8 @@
 #include <map>
 #include <vector>
 
+#include "Constants.h"
+#include "InputHandler.h"
 #include "PlayerStates.h"
 #include "Sprite.h"
 
@@ -41,6 +43,9 @@ protected:
     /* State Changing Interface */
     virtual void changeState(GameObjectState newState)=0;
     
+    /* Joystick Position Getter */
+    JoystickInput getJoystickInput() { return m_inputHandler->getJoystickInput(); }
+    
     /*
      * Player specific movement data members.  Velocity is normalized and then
      * multiplied by the appropriate speed data member to handle movement speed
@@ -57,6 +62,9 @@ protected:
     std::string m_currentAnimation;
     int m_currentAnimationFrame;
     std::map<std::string,std::vector<std::string>> m_animations;
+    
+    /* Input Handler Component Class */
+    InputHandler* m_inputHandler = NULL;
     
 };
 

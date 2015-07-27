@@ -9,6 +9,7 @@
 #ifndef arpg_Constants_h
 #define arpg_Constants_h
 
+#include <string>
 #include <SDL2/SDL.h>
 
 /* Debugging Mode */
@@ -24,6 +25,19 @@ const int WINDOW_XPOS = SDL_WINDOWPOS_UNDEFINED;
 const int WINDOW_YPOS = SDL_WINDOWPOS_UNDEFINED;
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
+
+enum JoystickInput
+{
+    kNeutralPosition,
+    kUpPosition,
+    kDownPosition,
+    kLeftPosition,
+    kRightPosition,
+    kUpLeftPosition,
+    kUpRightPosition,
+    kDownLeftPosition,
+    kDownRightPosition,
+};
 
 enum SceneID
 {

@@ -10,6 +10,7 @@
 
 #include "GameManager.h"
 #include "TextureManager.h"
+#include "PlayerInputHandler.h"
 #include "Strider.h"
 
 #pragma mark - Update Loop Methods
@@ -43,6 +44,7 @@ void Strider::update()
 
 void Strider::handleInput(SDL_Event *event)
 {
+    m_inputHandler->handleInput(event);
     m_playerState->handleInput(event);
 }
 
@@ -109,6 +111,8 @@ void Strider::init()
     m_playerState = NULL;
     m_hitboxes.clear();
     m_hurtboxes.clear();
+    m_inputHandler = new PlayerInputHandler();
+    m_inputHandler->init();
     
     changeState(kStateIdle);
 }
