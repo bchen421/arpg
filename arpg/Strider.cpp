@@ -107,7 +107,7 @@ void Strider::init()
     m_spritesheet = "strider";
     m_currentSpriteID = "";
     m_position = {0,0};
-    m_walkingSpeed = 1.0;
+    m_walkingSpeed = 1.2;
     m_playerState = NULL;
     m_hitboxes.clear();
     m_hurtboxes.clear();
