@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8F25CFEE1B4888B9004C1D56 /* ForwardSlashState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CFEC1B4888B9004C1D56 /* ForwardSlashState.cpp */; };
+		8F49DD651F6B7242008394E2 /* gtest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE96A171B465F2D0060AECD /* gtest.framework */; };
 		8F55D32D1B45B58800704973 /* WalkingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F55D32B1B45B58800704973 /* WalkingState.cpp */; };
 		8F55D32F1B45BA0F00704973 /* State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F55D32E1B45BA0F00704973 /* State.cpp */; };
 		8F9385E81B627C56000C588C /* PlayerInputHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F9385E61B627C56000C588C /* PlayerInputHandler.cpp */; };
@@ -110,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F49DD651F6B7242008394E2 /* gtest.framework in Frameworks */,
 				8FD5AA421B225F1F008599D4 /* SDL2.framework in Frameworks */,
 				8FD5AA3F1B225F1F008599D4 /* SDL2_image.framework in Frameworks */,
 				8FD5AA401B225F1F008599D4 /* SDL2_mixer.framework in Frameworks */,
@@ -524,7 +526,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -562,7 +564,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};

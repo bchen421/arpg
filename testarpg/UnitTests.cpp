@@ -10,8 +10,6 @@
 
 #include "GameUtilities.h"
 
-/* Test for Game Utility Static Methods */
-
 TEST(GameUtilitiesCornersOfRect, topLeft ) {
     SDL_Rect rect = {5,10,8,16};
     GameUtilities::CornersOfRect corners;
